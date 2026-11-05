@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class Enemy_Bullet : MonoBehaviour
 {
     public Enemy_Move_Speed moveSpeed;
+    public GameObject explosion_effect;
     private Vector3 playerTransform;
     private Vector3 direction;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -42,5 +43,11 @@ public class Enemy_Bullet : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
         findPlayer();
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        Instantiate(explosion_effect,new Vector3(transform.position.x,transform.position.y,transform.position.z),Quaternion.identity);
+        Destroy(gameObject);
+        
     }
 }
