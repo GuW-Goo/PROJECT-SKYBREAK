@@ -18,7 +18,6 @@ public class WeaponDataSO : ScriptableObject
     [SerializeField] private float projectileSpeed;
 
     [Header("Spread")]
-    [SerializeField] private int projectileCount = 1;
     [SerializeField] private float spreadAngle;
 
     [Header("Charge")]
@@ -50,7 +49,6 @@ public class WeaponDataSO : ScriptableObject
 
     // 기본형
     public float ProjectileSpeed => projectileSpeed;
-    public int ProjectileCount => projectileCount;
 
     // 방사형
     public float SpreadAngle => spreadAngle;
