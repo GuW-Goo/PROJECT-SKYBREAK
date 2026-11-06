@@ -320,6 +320,7 @@ GameObject:
   - component: {fileID: 1977181393}
   - component: {fileID: 1977181392}
   - component: {fileID: 1977181391}
+  - component: {fileID: 1977181395}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -422,6 +423,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1977181395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977181390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b2470e9848dde4f822e734287e9c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player_Test
 --- !u!1 &2082409620 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2211007419710365832, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
@@ -454,7 +467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1577600329898703410, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.59
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1577600329898703410, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
       propertyPath: m_LocalPosition.z
@@ -491,6 +504,10 @@ PrefabInstance:
     - target: {fileID: 2211007419710365832, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
       propertyPath: m_Name
       value: Enemy_Helicopter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6254202995793078982, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

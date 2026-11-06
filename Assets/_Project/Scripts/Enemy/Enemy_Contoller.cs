@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class Enemy_Contoller : MonoBehaviour
+public class Enemy_Contoller : MonoBehaviour, IDamageable
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    int hp = 30;
+    public int hp = 30;
     void Start()
     {
         
@@ -14,9 +14,11 @@ public class Enemy_Contoller : MonoBehaviour
     {
         
     }
-    public void getDamage(int damage)
+    public void TakeDamage(int damage)
     {
-        hp-=damage;
+        hp -= damage;
+        if(hp <= 0)
+            Dead();
     }
     public void Dead()
     {

@@ -12,6 +12,6 @@ public class Enemy_Straight_Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(0, 0,speed.move_Speed * Time.deltaTime);
+        transform.position += new Vector3(0, 0,-(speed.move_Speed * Time.deltaTime));
     }
 }

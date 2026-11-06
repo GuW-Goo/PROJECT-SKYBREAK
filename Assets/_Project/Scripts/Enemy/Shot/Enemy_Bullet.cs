@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 
 public class Enemy_Bullet : MonoBehaviour
 {
-    public Enemy_Move_Speed moveSpeed;
-    public GameObject explosion_effect;
-    private Vector3 playerTransform;
-    private Vector3 direction;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private Enemy_Move_Speed moveSpeed;//탄속
+    [SerializeField] private GameObject explosion_effect;//폭발이펙트
+    private Vector3 playerTransform;//플레이어 위치 추적하기위한 변속
+    private Vector3 direction;//날아가는 방향
+
     void Start()
     {
         findPlayer();
@@ -21,7 +21,7 @@ public class Enemy_Bullet : MonoBehaviour
         //플레이어 방향으로 날아가도록 설정
         if (playerTransform != null)
         {
-            transform.position += direction * moveSpeed.move_Speed * Time.deltaTime;
+            transform.position += direction * moveSpeed.move_Speed * 2 * Time.deltaTime;
         }
     }
     //플레이어 위치로 발사하기위해 플레이어 위치 찾기
@@ -46,7 +46,14 @@ public class Enemy_Bullet : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        //부딪힌 오브젝트에서 함수 가져오기  
+        IDamageable target = collision.gameObject.GetComponent<IDamageable>();
+        //없으면 실행불가
+        if(target != null ) 
+            target.TakeDamage(1);
+        //폭발 이펙트 생성(이펙트는 종료되면 자동삭제됨)
         Instantiate(explosion_effect,new Vector3(transform.position.x,transform.position.y,transform.position.z),Quaternion.identity);
+        //오브젝트 삭제
         Destroy(gameObject);
         
     }
