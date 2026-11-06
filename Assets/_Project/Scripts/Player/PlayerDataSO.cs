@@ -3,12 +3,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerDataSO", menuName = "SKYBREAK/Player/Player Data")]
 public class PlayerDataSO : ScriptableObject
 {
-    [Header("Combat")]
-    [SerializeField] private int attackPower = 1;
-
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 30.0f;
 
-    public int AttackPower => attackPower;
+    [Header("Health")]
+    [SerializeField] private int maxHealth = 3;
+
+    [Header("Combat")]
+    [SerializeField] private int maxBombCount = 2;
+
     public float MoveSpeed => moveSpeed;
+
+    public int MaxHealth => maxHealth;
+
+    public int MaxBombCount => maxBombCount;
 }

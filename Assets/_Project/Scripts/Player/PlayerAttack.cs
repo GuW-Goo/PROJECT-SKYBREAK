@@ -1,6 +1,4 @@
 using UnityEngine;
-
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
@@ -9,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private BaseWeapon currentWeapon;
     [SerializeField] private WeaponDataSO weaponData;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private PlayerBomb playerBomb;
 
     private void Awake()
     {
@@ -20,6 +19,10 @@ public class PlayerAttack : MonoBehaviour
         if (Keyboard.current.spaceKey.isPressed)
         {
             currentWeapon.TryFire();
+        }
+        if (Keyboard.current.leftCtrlKey.isPressed)
+        {
+            playerBomb.UseBomb();
         }
     }
 }
