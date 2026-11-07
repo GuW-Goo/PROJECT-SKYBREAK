@@ -435,77 +435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b2470e9848dde4f822e734287e9c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_Test
---- !u!1 &2082409620 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2211007419710365832, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
-  m_PrefabInstance: {fileID: 7180640176995277023}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2082409630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2082409620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fa955886b45da4bb154eab165fa6b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Move_Pattern_1
-  speed: {fileID: 11400000, guid: ba1c766733d6488409e7e460372a78bd, type: 2}
---- !u!114 &2082409636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2082409620}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae7d141d291cd8a499b57df7da348f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Move_Pattern_2
-  speed: {fileID: 11400000, guid: ba1c766733d6488409e7e460372a78bd, type: 2}
---- !u!114 &2082409637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2082409620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f79542712a01c9b4c9fd8022169be95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Contoller
-  hp: 30
---- !u!54 &2082409638
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2082409620}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &7180640176995277023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -558,30 +487,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Helicopter
       objectReference: {fileID: 0}
-    - target: {fileID: 6254202995793078982, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775675039191663963, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2211007419710365832, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2082409630}
-    - targetCorrespondingSourceObject: {fileID: 2211007419710365832, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2082409636}
-    - targetCorrespondingSourceObject: {fileID: 2211007419710365832, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2082409637}
-    - targetCorrespondingSourceObject: {fileID: 2211007419710365832, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2082409638}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
