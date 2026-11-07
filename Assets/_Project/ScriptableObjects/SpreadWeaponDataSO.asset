@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponDataSO
   weaponName: "\uBC29\uC0AC\uD615"
   projectileCounts: 030000000500000007000000
-  attackPower: 0
+  attackPower: 10
   fireInterval: 0.5
   projectilePrefab: {fileID: 7175682048936650874, guid: 2802a6a90bfec444e84bf05c0bb87de3, type: 3}
   projectileSpeed: 100
