@@ -28,7 +28,7 @@ public class Enemy_Contoller : MonoBehaviour, IDamageable
     {
         if (collision.collider.gameObject.CompareTag("Player"))
         {
-           
+            Destroy(gameObject);
         }
     }
 
