@@ -16,10 +16,21 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            currentWeapon.OnFirePressed();
+        }
+
         if (Keyboard.current.spaceKey.isPressed)
         {
-            currentWeapon.TryFire();
+            currentWeapon.OnFireHeld();
         }
+
+        if (Keyboard.current.spaceKey.wasReleasedThisFrame)
+        {
+            currentWeapon.OnFireReleased();
+        }
+
         if (Keyboard.current.leftCtrlKey.isPressed)
         {
             playerBomb.UseBomb();

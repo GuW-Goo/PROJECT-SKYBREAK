@@ -8,6 +8,28 @@ public abstract class BaseWeapon : MonoBehaviour
     protected Transform firePoint;
     protected int level;
 
+    protected bool IsFireReady => Time.time >= nextFireTime;
+
+    public void Initialize(WeaponDataSO data, Transform point)
+    {
+        weaponData = data;
+        firePoint = point;
+        level = 1;
+    }
+
+    public virtual void OnFirePressed()
+    {
+    }
+
+    public virtual void OnFireHeld()
+    {
+        TryFire();
+    }
+
+    public virtual void OnFireReleased()
+    {
+    }
+
     public void TryFire()
     {
         if (Time.time < nextFireTime)
@@ -18,27 +40,47 @@ public abstract class BaseWeapon : MonoBehaviour
         nextFireTime = Time.time + weaponData.FireInterval;
     }
 
-    public void Initialize(WeaponDataSO data, Transform point)
-    {
-        weaponData = data;
-        firePoint = point;
-        level = 1;
-    }
-
     protected void SpawnProjectile(Vector3 position, Vector3 direction)
     {
         GameObject projectileObject = Instantiate(
-        weaponData.ProjectilePrefab,
-        position,
-        Quaternion.LookRotation(direction)
+            weaponData.ProjectilePrefab,
+            position,
+            Quaternion.LookRotation(direction)
         );
 
-        Projectile projectile =
-            projectileObject.GetComponent<Projectile>();
+        Projectile projectile = projectileObject.GetComponent<Projectile>();
 
         projectile.Initialize(
             weaponData.AttackPower,
             weaponData.ProjectileSpeed
+        );
+    }
+
+    protected void SpawnChargeProjectile(
+        Vector3 position,
+        Vector3 direction,
+        int damage,
+        float projectileScale,
+        float splashRadius,
+        bool canSplash)
+    {
+        GameObject projectileObject = Instantiate(
+            weaponData.ProjectilePrefab,
+            position,
+            Quaternion.LookRotation(direction)
+        );
+
+        projectileObject.transform.localScale =
+            Vector3.one * projectileScale;
+
+        ChargeProjectile projectile =
+            projectileObject.GetComponent<ChargeProjectile>();
+
+        projectile.Initialize(
+            damage,
+            weaponData.ProjectileSpeed,
+            splashRadius,
+            canSplash
         );
     }
 

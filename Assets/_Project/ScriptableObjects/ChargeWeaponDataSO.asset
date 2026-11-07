@@ -15,13 +15,20 @@ MonoBehaviour:
   weaponName: "\uCC28\uC9C0\uD615"
   projectileCounts: 010000000100000001000000
   attackPower: 0
-  fireInterval: 0
-  projectilePrefab: {fileID: 7175682048936650874, guid: 2802a6a90bfec444e84bf05c0bb87de3, type: 3}
-  projectileSpeed: 0
+  fireInterval: 0.1
+  projectilePrefab: {fileID: 1891213095893835229, guid: 2596851bd9e4b0349963cbfc1c506c2d, type: 3}
+  projectileSpeed: 100
   spreadAngle: 0
   minChargeTime: 0
-  maxChargeTime: 0
-  maxChargeAttackPower: 0
+  maxChargeTime: 1.5
+  minChargeAttackPower: 1
+  maxChargeAttackPower: 30
+  minProjectileScale: 1
+  maxProjectileScale: 10
+  splashRadiusByLevel:
+  - 12
+  - 12
+  - 25
   homingTurnSpeed: 0
   detectionRange: 0
   laserWidth: 0

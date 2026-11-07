@@ -23,7 +23,15 @@ public class WeaponDataSO : ScriptableObject
     [Header("Charge")]
     [SerializeField] private float minChargeTime;
     [SerializeField] private float maxChargeTime;
+
+    [SerializeField] private int minChargeAttackPower;
     [SerializeField] private int maxChargeAttackPower;
+
+    [SerializeField] private float minProjectileScale;
+    [SerializeField] private float maxProjectileScale;
+
+    [Header("ChargeSplash")]
+    [SerializeField] private float[] splashRadiusByLevel = { 1.2f, 1.2f, 2.5f };
 
     [Header("Homing")]
     [SerializeField] private float homingTurnSpeed;
@@ -56,7 +64,16 @@ public class WeaponDataSO : ScriptableObject
     // 차지형
     public float MinChargeTime => minChargeTime;
     public float MaxChargeTime => maxChargeTime;
+    public int MinChargeAttackPower => minChargeAttackPower;
     public int MaxChargeAttackPower => maxChargeAttackPower;
+    public float MinProjectileScale => minProjectileScale;
+    public float MaxProjectileScale => maxProjectileScale;
+
+    public float GetSplashRadius(int level)
+    {
+        int index = Mathf.Clamp(level - 1, 0, splashRadiusByLevel.Length - 1);
+        return splashRadiusByLevel[index];
+    }
 
     // 유도형
     public float HomingTurnSpeed => homingTurnSpeed;
