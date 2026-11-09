@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
             currentWeapon.OnFireReleased();
         }
 
-        if (Keyboard.current.leftCtrlKey.isPressed)
+        if (Keyboard.current.leftCtrlKey.wasPressedThisFrame)
         {
             playerBomb.UseBomb();
         }

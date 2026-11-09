@@ -3,10 +3,12 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     private PlayerHealth playerHealth;
+    private PlayerBomb playerBomb;
     
     private void Awake()
     {
         playerHealth = GetComponent<PlayerHealth>();
+        playerBomb = GetComponent<PlayerBomb>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -14,6 +16,11 @@ public class PlayerCollision : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))
         {
             playerHealth.TakeDamage(1);
+        }
+        else if(collision.gameObject.CompareTag("BombItem"))
+        {
+            playerBomb.TakeBomb();
+            Destroy(collision.gameObject);
         }
     }
 }
