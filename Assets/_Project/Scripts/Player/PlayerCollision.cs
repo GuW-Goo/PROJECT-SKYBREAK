@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
@@ -5,6 +6,8 @@ public class PlayerCollision : MonoBehaviour
     private PlayerHealth playerHealth;
     private PlayerBomb playerBomb;
     private WeaponRuntimeData weaponRuntimeData;
+
+    public event Action OnWeaponItemCollected;
     
     private void Awake()
     {
@@ -27,6 +30,7 @@ public class PlayerCollision : MonoBehaviour
         else if(collision.gameObject.CompareTag("WeaponItem"))
         {
             weaponRuntimeData.LevelUP();
+            OnWeaponItemCollected.Invoke();
             Destroy(collision.gameObject);
         }
     }

@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &188773524 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5766236623679401486, guid: abc752cf9fd9eea41ac99ca347c3adbf, type: 3}
+  m_PrefabInstance: {fileID: 964617280}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e06a95898e632ba46897d3295ad50468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollision
 --- !u!1 &259534907 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2211007419710365832, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
@@ -169,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9161035622302614626, guid: fe5ae59754bd3b8418ecd5ed57745bb4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -44.98769
+      value: -80.487686
       objectReference: {fileID: 0}
     - target: {fileID: 9161035622302614626, guid: fe5ae59754bd3b8418ecd5ed57745bb4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -177,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9161035622302614626, guid: fe5ae59754bd3b8418ecd5ed57745bb4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -53.73442
+      value: -72.634415
       objectReference: {fileID: 0}
     - target: {fileID: 9161035622302614626, guid: fe5ae59754bd3b8418ecd5ed57745bb4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -265,6 +276,10 @@ PrefabInstance:
       value: Enemy_Helicopter
       objectReference: {fileID: 0}
     - target: {fileID: 5403391201810117733, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015950620568258062, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -434,52 +449,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abc752cf9fd9eea41ac99ca347c3adbf, type: 3}
---- !u!1 &1195241938
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1195241940}
-  - component: {fileID: 1195241939}
-  m_Layer: 0
-  m_Name: WeaponChoiceTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1195241939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195241938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb0faaf870342d64fbfb522790d673b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponChoiceTest
-  weaponManager: {fileID: 1944846779}
-  weaponChoiceManager: {fileID: 1950675942}
---- !u!4 &1195241940
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195241938}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.92304, z: -0.87389}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1359979885 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2211007419710365832, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
@@ -554,6 +523,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6015950620568258062, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -573,17 +546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361c2f646f163c04e8f558fa1d321d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
---- !u!114 &1950675942 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1532941481692235823, guid: 93b02883314863e4cbd5c47b2e2bc7e5, type: 3}
-  m_PrefabInstance: {fileID: 4852959601560240112}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2486da3ec14321f4abc44b00f0637624, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponChoiceManager
 --- !u!1001 &1962708360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -637,6 +599,10 @@ PrefabInstance:
       value: Enemy_Helicopter (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5403391201810117733, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015950620568258062, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -748,6 +714,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1532941481692235823, guid: 93b02883314863e4cbd5c47b2e2bc7e5, type: 3}
+      propertyPath: weaponManager
+      value: 
+      objectReference: {fileID: 1944846779}
+    - target: {fileID: 1532941481692235823, guid: 93b02883314863e4cbd5c47b2e2bc7e5, type: 3}
+      propertyPath: playerCollision
+      value: 
+      objectReference: {fileID: 188773524}
     - target: {fileID: 4747473797090907156, guid: 93b02883314863e4cbd5c47b2e2bc7e5, type: 3}
       propertyPath: m_Name
       value: WeaponChoiceManager
@@ -811,7 +785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9161035622302614626, guid: fe5ae59754bd3b8418ecd5ed57745bb4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.2
+      value: -64.7
       objectReference: {fileID: 0}
     - target: {fileID: 9161035622302614626, guid: fe5ae59754bd3b8418ecd5ed57745bb4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -819,7 +793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9161035622302614626, guid: fe5ae59754bd3b8418ecd5ed57745bb4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -34.2
+      value: -53.1
       objectReference: {fileID: 0}
     - target: {fileID: 9161035622302614626, guid: fe5ae59754bd3b8418ecd5ed57745bb4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -921,7 +895,6 @@ SceneRoots:
   - {fileID: 1706667355}
   - {fileID: 1962708360}
   - {fileID: 8904176166089801434}
-  - {fileID: 1195241940}
   - {fileID: 4852959601560240112}
   - {fileID: 964617280}
   - {fileID: 5000925219165315555}

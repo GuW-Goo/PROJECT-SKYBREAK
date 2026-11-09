@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2486da3ec14321f4abc44b00f0637624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponChoiceManager
+  weaponManager: {fileID: 0}
+  playerCollision: {fileID: 0}
   allWeaponDataSOList:
   - {fileID: 11400000, guid: 782e683ed0332b34e845eda23a1508d3, type: 2}
   - {fileID: 11400000, guid: 12f552680a770234894ffef5168fb26b, type: 2}

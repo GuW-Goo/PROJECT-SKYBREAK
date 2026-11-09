@@ -46,6 +46,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
     public void SetLevel(int playerLevel)
     {
+        Debug.Log("무기를 강화합니다. 현재 레벨 : " + playerLevel);
         level = playerLevel;
     }
 

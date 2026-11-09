@@ -5,9 +5,15 @@ public class WeaponManager : MonoBehaviour
     [Header("Weapon")]
     [SerializeField] Transform firePoint;
     [SerializeField] WeaponRuntimeData runtimeData;
+    [SerializeField] WeaponDataSO defaultWeaponData;
 
     private BaseWeapon currentWeapon;
     private WeaponDataSO currentWeaponData;
+
+    private void Awake()
+    {
+        ChangeWeapon(defaultWeaponData);
+    }
 
     public void OnFirePressed()
     {
@@ -26,8 +32,6 @@ public class WeaponManager : MonoBehaviour
 
     public void ChangeWeapon(WeaponDataSO data)
     {
-        Debug.Log($"선택한 무기: {data.WeaponName}, Type: {data.Type}");
-
         if (data == null)
             return;
 
@@ -55,17 +59,14 @@ public class WeaponManager : MonoBehaviour
         {
             case WeaponType.Straight:
                 currentWeapon = gameObject.AddComponent<StraightWeapon>();
-                Debug.Log($"실제로 생성된 컴포넌트: {currentWeapon.GetType().Name}");
                 break;
 
             case WeaponType.Spread:
                 currentWeapon = gameObject.AddComponent<SpreadWeapon>();
-                Debug.Log($"실제로 생성된 컴포넌트: {currentWeapon.GetType().Name}");
                 break;
 
             case WeaponType.Charge:
                 currentWeapon = gameObject.AddComponent<ChargeWeapon>();
-                Debug.Log($"실제로 생성된 컴포넌트: {currentWeapon.GetType().Name}");
                 break;
             /*
             case WeaponType.Homing:
@@ -88,6 +89,7 @@ public class WeaponManager : MonoBehaviour
     private void OnEnable()
     {
         runtimeData.OnPlayerLevelChanged += UpdateWeaponLevel;
+
     }
 
     private void OnDisable()
