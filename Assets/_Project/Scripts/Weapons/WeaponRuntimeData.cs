@@ -1,16 +1,29 @@
+using System;
 using UnityEngine;
 
 public class WeaponRuntimeData : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Header("Player Level")]
+    [SerializeField] private int maxPlayerLevel = 3;
+    [SerializeField] private int playerLevel = 1;
 
-    // Update is called once per frame
-    void Update()
+    [Header("Additional Stats")]
+    [SerializeField] private int bonusAttackPower;
+    [SerializeField] private float bonusFireRate;
+
+    public int PlayerLevel => playerLevel;
+    public int BonusAttackPower => bonusAttackPower;
+    public float BonusFireRate => bonusFireRate;
+
+    public event Action<int> OnPlayerLevelChanged;
+
+    public void LevelUP()
     {
-        
+        if (playerLevel >= maxPlayerLevel)
+            return;
+
+        playerLevel++;
+
+        OnPlayerLevelChanged?.Invoke(playerLevel);
     }
 }

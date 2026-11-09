@@ -5,6 +5,7 @@ public class WeaponDataSO : ScriptableObject
 {
     [Header("Weapon Info")]
     [SerializeField] private string weaponName;
+    [SerializeField] private WeaponType weaponType;
 
     [Header("Level")]
     [SerializeField] private int[] projectileCounts = { 1, 3, 5 };
@@ -15,14 +16,18 @@ public class WeaponDataSO : ScriptableObject
 
     [Header("Projectile")]
     [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private GameObject hitEffectPrefab;
     [SerializeField] private float projectileSpeed;
+
+    [Header("Straight")]
+    [SerializeField] private float projectileSpacing;
 
     [Header("Spread")]
     [SerializeField] private float spreadAngle;
 
     [Header("Charge")]
     [SerializeField] private float minChargeTime;
-    [SerializeField] private float maxChargeTime;
+    [SerializeField] private float[] maxChargeTime = { 1.5f, 1.0f, 1.0f };
 
     [SerializeField] private int minChargeAttackPower;
     [SerializeField] private int maxChargeAttackPower;
@@ -43,7 +48,9 @@ public class WeaponDataSO : ScriptableObject
 
     // 공통
     public string WeaponName => weaponName;
+    public WeaponType Type => weaponType;
     public GameObject ProjectilePrefab => projectilePrefab;
+    public GameObject HitEffectPrefab => hitEffectPrefab;
     public int AttackPower => attackPower;
     public float FireInterval => fireInterval;
 
@@ -55,15 +62,22 @@ public class WeaponDataSO : ScriptableObject
         return projectileCounts[index];
     }
 
-    // 기본형
+    // 기본
     public float ProjectileSpeed => projectileSpeed;
+
+    // 직선형
+    public float ProjectileSpacing => projectileSpacing;
 
     // 방사형
     public float SpreadAngle => spreadAngle;
 
     // 차지형
     public float MinChargeTime => minChargeTime;
-    public float MaxChargeTime => maxChargeTime;
+    public float GetMaxChargeTime(int level)
+    {
+        int index = Mathf.Clamp(level - 1, 0, maxChargeTime.Length - 1);
+        return maxChargeTime[index];
+    }
     public int MinChargeAttackPower => minChargeAttackPower;
     public int MaxChargeAttackPower => maxChargeAttackPower;
     public float MinProjectileScale => minProjectileScale;

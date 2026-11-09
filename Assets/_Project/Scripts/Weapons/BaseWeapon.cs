@@ -10,11 +10,11 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected bool IsFireReady => Time.time >= nextFireTime;
 
-    public void Initialize(WeaponDataSO data, Transform point)
+    public void Initialize(WeaponDataSO data, Transform point, int playerLevel)
     {
         weaponData = data;
         firePoint = point;
-        level = 1;
+        level = playerLevel;
     }
 
     public virtual void OnFirePressed()
@@ -30,6 +30,10 @@ public abstract class BaseWeapon : MonoBehaviour
     {
     }
 
+    public virtual void OnUnequip()
+    {
+    }
+
     public void TryFire()
     {
         if (Time.time < nextFireTime)
@@ -38,6 +42,11 @@ public abstract class BaseWeapon : MonoBehaviour
         Fire();
 
         nextFireTime = Time.time + weaponData.FireInterval;
+    }
+
+    public void SetLevel(int playerLevel)
+    {
+        level = playerLevel;
     }
 
     protected void SpawnProjectile(Vector3 position, Vector3 direction)
@@ -52,7 +61,8 @@ public abstract class BaseWeapon : MonoBehaviour
 
         projectile.Initialize(
             weaponData.AttackPower,
-            weaponData.ProjectileSpeed
+            weaponData.ProjectileSpeed,
+            weaponData.HitEffectPrefab
         );
     }
 
@@ -80,7 +90,8 @@ public abstract class BaseWeapon : MonoBehaviour
             damage,
             weaponData.ProjectileSpeed,
             splashRadius,
-            canSplash
+            canSplash,
+            weaponData.HitEffectPrefab
         );
     }
 

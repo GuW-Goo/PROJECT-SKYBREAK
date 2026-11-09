@@ -3,8 +3,7 @@ using UnityEngine.Rendering;
 
 public class ChargeWeapon : BaseWeapon
 {
-    [Header("Charge Visual")]
-    [SerializeField] private ChargeVisualController chargeVisual;
+    private ChargeVisualController chargeVisual;
 
     private float chargeStartTime;
     private float chargeTime;
@@ -14,6 +13,11 @@ public class ChargeWeapon : BaseWeapon
 
     int finalDamage;
     float finalProjectileScale;
+
+    private void Awake()
+    {
+        chargeVisual = GetComponent<ChargeVisualController>();
+    }
 
     public override void OnFirePressed()
     {
@@ -36,20 +40,20 @@ public class ChargeWeapon : BaseWeapon
 
         chargeTime = Mathf.Min(
             Time.time - chargeStartTime,
-            weaponData.MaxChargeTime
+            weaponData.GetMaxChargeTime(level)
         );
 
         // 시각 효과 크기 갱신
         float visualRatio = Mathf.InverseLerp(
             0.0f,
-            weaponData.MaxChargeTime,
+            weaponData.GetMaxChargeTime(level),
             chargeTime
         );
 
         chargeVisual.UpdateChargeSize(visualRatio);
 
         // 최대 충전 도달
-        if(chargeTime >= weaponData.MaxChargeTime && !hasReachedMaxCharge)
+        if(chargeTime >= weaponData.GetMaxChargeTime(level) && !hasReachedMaxCharge)
         {
             hasReachedMaxCharge = true;
             chargeVisual.SetFullyCharged(true);
@@ -65,7 +69,7 @@ public class ChargeWeapon : BaseWeapon
 
         // 최대 충전 여부 확인
         chargeTime = Time.time - chargeStartTime;
-        hasReachedMaxCharge = chargeTime >= weaponData.MaxChargeTime;
+        hasReachedMaxCharge = chargeTime >= weaponData.GetMaxChargeTime(level);
 
         if (hasReachedMaxCharge)
         {

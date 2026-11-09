@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class ChargeProjectile : MonoBehaviour
 {
+    private GameObject explosionEffect;
+
     private int damage;
     private float moveSpeed;
     private float splashRadius;
@@ -10,12 +12,13 @@ public class ChargeProjectile : MonoBehaviour
 
     private bool hasImpacted;
 
-    public void Initialize(int damage, float moveSpeed, float splashRadius, bool canSplash)
+    public void Initialize(int damage, float moveSpeed, float splashRadius, bool canSplash, GameObject explosionEffect)
     {
         this.damage = damage;
         this.moveSpeed = moveSpeed; 
         this.splashRadius = splashRadius;
         this.canSplash = canSplash;
+        this.explosionEffect = explosionEffect;
     }
 
     private void Update()
@@ -31,9 +34,11 @@ public class ChargeProjectile : MonoBehaviour
         if (other.TryGetComponent<IDamageable>(out var target))
         {
             hasImpacted = true;
+            GameObject effect = Instantiate(explosionEffect, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
 
             if (canSplash)
             {
+                effect.transform.localScale *= splashRadius;
                 Explode();
             }
             else

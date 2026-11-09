@@ -13,16 +13,25 @@ MonoBehaviour:
   m_Name: StraightWeaponDataSO
   m_EditorClassIdentifier: Assembly-CSharp::WeaponDataSO
   weaponName: "\uAE30\uBCF8\uD615(\uC9C1\uC120\uD22C\uC0AC\uCCB4)"
+  weaponType: 0
   projectileCounts: 010000000300000005000000
-  attackPower: 0
+  attackPower: 10
   fireInterval: 0.5
   projectilePrefab: {fileID: 7175682048936650874, guid: 2802a6a90bfec444e84bf05c0bb87de3, type: 3}
+  hitEffectPrefab: {fileID: 7621875707464560624, guid: 5c4f291345edfa043b05e4e83a3d0915, type: 3}
   projectileSpeed: 100
-  projectileCount: 1
+  projectileSpacing: 3
   spreadAngle: 0
   minChargeTime: 0
-  maxChargeTime: 0
+  maxChargeTime: []
+  minChargeAttackPower: 0
   maxChargeAttackPower: 0
+  minProjectileScale: 0
+  maxProjectileScale: 0
+  splashRadiusByLevel:
+  - 1.2
+  - 1.2
+  - 2.5
   homingTurnSpeed: 0
   detectionRange: 0
   laserWidth: 0
