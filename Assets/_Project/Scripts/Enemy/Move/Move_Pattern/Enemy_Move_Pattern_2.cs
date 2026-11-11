@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy_Move_Pattern_2 : MonoBehaviour
+public class Enemy_Move_Pattern_2 : Enemy_Move_Pattern
 {
     //이동속도
     [SerializeField] private Enemy_Move_Speed speed;
@@ -8,6 +8,7 @@ public class Enemy_Move_Pattern_2 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        transform.position = new Vector3(-60, 0, 110);
         transform.rotation = Quaternion.Euler(0, 135, 0);
     }
     //추가 할것
