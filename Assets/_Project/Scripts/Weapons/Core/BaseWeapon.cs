@@ -6,14 +6,20 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected WeaponDataSO weaponData;
     protected Transform firePoint;
+    protected ProjectilePoolManager projectilePool;
     protected int level;
 
     protected bool IsFireReady => Time.time >= nextFireTime;
 
-    public void Initialize(WeaponDataSO data, Transform point, int playerLevel)
+    public void Initialize(
+        WeaponDataSO data,
+        Transform point,
+        ProjectilePoolManager poolManager,
+        int playerLevel)
     {
         weaponData = data;
         firePoint = point;
+        projectilePool = poolManager;
         level = playerLevel;
     }
 
@@ -52,19 +58,19 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected void SpawnProjectile(Vector3 position, Vector3 direction)
     {
-        GameObject projectileObject = Instantiate(
-            weaponData.ProjectilePrefab,
-            position,
-            Quaternion.LookRotation(direction)
-        );
+        BaseProjectile projectile = projectilePool.GetProjectile(weaponData.ProjectilePrefab);
 
-        Projectile projectile = projectileObject.GetComponent<Projectile>();
+        projectile.transform.position = position;
+        projectile.transform.rotation = Quaternion.LookRotation(direction);
 
         projectile.Initialize(
             weaponData.AttackPower,
             weaponData.ProjectileSpeed,
+            weaponData.LifeTime,
             weaponData.HitEffectPrefab
         );
+
+        projectile.Activate();
     }
 
     protected void SpawnChargeProjectile(
@@ -75,25 +81,24 @@ public abstract class BaseWeapon : MonoBehaviour
         float splashRadius,
         bool canSplash)
     {
-        GameObject projectileObject = Instantiate(
-            weaponData.ProjectilePrefab,
-            position,
-            Quaternion.LookRotation(direction)
-        );
+        BaseProjectile projectile = projectilePool.GetProjectile(weaponData.ProjectilePrefab);
 
-        projectileObject.transform.localScale =
-            Vector3.one * projectileScale;
+        ChargeProjectile chargeProjectile = (ChargeProjectile)projectile;
 
-        ChargeProjectile projectile =
-            projectileObject.GetComponent<ChargeProjectile>();
+        chargeProjectile.transform.position = position;
+        chargeProjectile.transform.rotation = Quaternion.LookRotation(direction);
+        chargeProjectile.transform.localScale = Vector3.one * projectileScale;
 
-        projectile.Initialize(
+        chargeProjectile.Initialize(
             damage,
             weaponData.ProjectileSpeed,
+            weaponData.LifeTime,
             splashRadius,
             canSplash,
             weaponData.HitEffectPrefab
         );
+
+        chargeProjectile.Activate();
     }
 
     // 무기별 공격 방식 구현
