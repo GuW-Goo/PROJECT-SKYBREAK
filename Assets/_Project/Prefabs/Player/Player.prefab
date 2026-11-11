@@ -859,5 +859,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
   firePoint: {fileID: 2146454439518907162}
+  projectilePoolManager: {fileID: 0}
   runtimeData: {fileID: 5032112541398396301}
   defaultWeaponData: {fileID: 11400000, guid: 782e683ed0332b34e845eda23a1508d3, type: 2}

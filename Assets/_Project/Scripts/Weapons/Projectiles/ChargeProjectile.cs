@@ -1,29 +1,24 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class ChargeProjectile : MonoBehaviour
+public class ChargeProjectile : BaseProjectile
 {
-    private GameObject explosionEffect;
-
-    private int damage;
-    private float moveSpeed;
     private float splashRadius;
     private bool canSplash;
-
     private bool hasImpacted;
 
-    public void Initialize(int damage, float moveSpeed, float splashRadius, bool canSplash, GameObject explosionEffect)
+    public void Initialize(int damage, float moveSpeed, float lifeTime, float splashRadius, bool canSplash, GameObject explosionEffect)
     {
-        this.damage = damage;
-        this.moveSpeed = moveSpeed; 
+        base.Initialize(
+        damage,
+        moveSpeed,
+        lifeTime,
+        explosionEffect);
+
         this.splashRadius = splashRadius;
         this.canSplash = canSplash;
-        this.explosionEffect = explosionEffect;
-    }
 
-    private void Update()
-    {
-        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        hasImpacted = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,7 +41,7 @@ public class ChargeProjectile : MonoBehaviour
                 target.TakeDamage(damage);
             }
 
-            Destroy(gameObject);
+            poolManager.ReturnProjectile(this);
         }
     }
 

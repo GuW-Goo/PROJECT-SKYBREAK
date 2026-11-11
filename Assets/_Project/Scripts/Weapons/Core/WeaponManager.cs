@@ -4,6 +4,7 @@ public class WeaponManager : MonoBehaviour
 {
     [Header("Weapon")]
     [SerializeField] Transform firePoint;
+    [SerializeField] ProjectilePoolManager projectilePoolManager;
     [SerializeField] WeaponRuntimeData runtimeData;
     [SerializeField] WeaponDataSO defaultWeaponData;
 
@@ -82,7 +83,7 @@ public class WeaponManager : MonoBehaviour
         if (currentWeapon == null)
             return;
 
-        currentWeapon.Initialize(data, firePoint, runtimeData.PlayerLevel);
+        currentWeapon.Initialize(data, firePoint, projectilePoolManager, runtimeData.PlayerLevel);
         currentWeaponData = data;
     }
 

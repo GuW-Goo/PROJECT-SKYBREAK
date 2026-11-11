@@ -17,6 +17,7 @@ MonoBehaviour:
   projectileCounts: 010000000100000001000000
   attackPower: 0
   fireInterval: 0.1
+  lifeTime: 3
   projectilePrefab: {fileID: 1891213095893835229, guid: 2596851bd9e4b0349963cbfc1c506c2d, type: 3}
   hitEffectPrefab: {fileID: 7621875707464560624, guid: 5c4f291345edfa043b05e4e83a3d0915, type: 3}
   projectileSpeed: 100

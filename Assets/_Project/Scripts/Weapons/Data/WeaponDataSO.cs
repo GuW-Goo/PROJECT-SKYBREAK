@@ -13,6 +13,7 @@ public class WeaponDataSO : ScriptableObject
     [Header("Combat")]
     [SerializeField] private int attackPower;
     [SerializeField] private float fireInterval;
+    [SerializeField] private float lifeTime;
 
     [Header("Projectile")]
     [SerializeField] private GameObject projectilePrefab;
@@ -53,6 +54,7 @@ public class WeaponDataSO : ScriptableObject
     public GameObject HitEffectPrefab => hitEffectPrefab;
     public int AttackPower => attackPower;
     public float FireInterval => fireInterval;
+    public float LifeTime => lifeTime;
 
     // Level
     public int GetProjectileCount(int level)
