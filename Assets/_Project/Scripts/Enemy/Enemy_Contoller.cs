@@ -1,18 +1,29 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy_Contoller : MonoBehaviour, IDamageable
 {
+    [SerializeField] private Enemy_Shot enemy_shoter;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    //체력
     public int hp = 30;
+    //발사 딜레이 시간
+    float attack_Timing;
     void Start()
     {
-        
+        //일단 3초 간격 발사하도록 설정
+        attack_Timing = 3;
+        //enemy_shot.cs 초기화
+        enemy_shoter.GetComponent<Enemy_Shot>();
+        StartCoroutine(attack_Routine());
     }
-
-    // Update is called once per frame
-    void Update()
+    private IEnumerator attack_Routine()
     {
-        
+        while (true)
+        {
+            yield return new WaitForSeconds(attack_Timing);
+            enemy_shoter.fire();
+        }
     }
     public void TakeDamage(int damage)
     {
