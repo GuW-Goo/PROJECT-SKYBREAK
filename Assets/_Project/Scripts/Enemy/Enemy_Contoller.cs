@@ -11,8 +11,8 @@ public class Enemy_Contoller : MonoBehaviour, IDamageable
     float attack_Timing;
     void Start()
     {
-        //일단 3초 간격 발사하도록 설정
-        attack_Timing = 3;
+        //일단 5초 간격 발사하도록 설정
+        attack_Timing = 5;
         //enemy_shot.cs 초기화
         enemy_shoter.GetComponent<Enemy_Shot>();
         StartCoroutine(attack_Routine());
@@ -21,9 +21,10 @@ public class Enemy_Contoller : MonoBehaviour, IDamageable
     {
         while (true)
         {
-            yield return new WaitForSeconds(attack_Timing);
             enemy_shoter.fire();
+            yield return new WaitForSeconds(attack_Timing);
         }
+
     }
     public void TakeDamage(int damage)
     {
