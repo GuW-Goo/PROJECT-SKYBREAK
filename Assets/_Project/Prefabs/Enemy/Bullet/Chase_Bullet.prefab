@@ -8,6 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<<< HEAD:Assets/_Project/Prefabs/Enemy/Bullet/Chase_Bullet.prefab
   - component: {fileID: 5141203954890925233}
   - component: {fileID: 5945356667624304660}
   - component: {fileID: 2460798778500334954}
@@ -17,6 +18,17 @@ GameObject:
   m_Layer: 6
   m_Name: Chase_Bullet
   m_TagString: Enemy_Bullet
+========
+  - component: {fileID: 7391575988290846422}
+  - component: {fileID: 3609641973543255937}
+  - component: {fileID: 5226608687122510945}
+  - component: {fileID: 5562033338995470154}
+  - component: {fileID: 6491427249145844463}
+  - component: {fileID: -5629012441756852921}
+  m_Layer: 0
+  m_Name: PlayerProjectile
+  m_TagString: Untagged
+>>>>>>>> main:Assets/_Project/Prefabs/Player/Projectile/PlayerProjectile.prefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +81,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<<< HEAD:Assets/_Project/Prefabs/Enemy/Bullet/Chase_Bullet.prefab
   - {fileID: 2100000, guid: 9532f6b838efee846ae44755b090b236, type: 2}
+========
+  - {fileID: 2100000, guid: 0345c377813a7084cb1989d363f7bb82, type: 2}
+>>>>>>>> main:Assets/_Project/Prefabs/Player/Projectile/PlayerProjectile.prefab
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -15,7 +15,11 @@ GameObject:
   - component: {fileID: 846731058967534053}
   - component: {fileID: -3874389253594175385}
   m_Layer: 6
+<<<<<<< HEAD:Assets/_Project/Prefabs/Enemy/Bullet/Nomal_Bullet.prefab
   m_Name: Nomal_Bullet
+=======
+  m_Name: Sphere
+>>>>>>> main:Assets/_Project/Prefabs/Enemy/Sphere.prefab
   m_TagString: Enemy_Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

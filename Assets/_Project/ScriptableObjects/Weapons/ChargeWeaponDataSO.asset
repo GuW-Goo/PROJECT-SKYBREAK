@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5df2a352a86df4c9f18f863ed8bf7b, type: 3}
+  m_Name: ChargeWeaponDataSO
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponDataSO
+  weaponName: "\uCC28\uC9C0\uD615"
+  weaponType: 2
+  projectileCounts: 010000000100000001000000
+  attackPower: 0
+  fireInterval: 0.1
+  lifeTime: 3
+  projectilePrefab: {fileID: 1891213095893835229, guid: 2596851bd9e4b0349963cbfc1c506c2d, type: 3}
+  hitEffectPrefab: {fileID: 7621875707464560624, guid: 5c4f291345edfa043b05e4e83a3d0915, type: 3}
+  projectileSpeed: 100
+  projectileSpacing: 0
+  spreadAngle: 0
+  minChargeTime: 0
+  maxChargeTime:
+  - 1.5
+  - 1
+  - 1
+  minChargeAttackPower: 1
+  maxChargeAttackPower: 30
+  minProjectileScale: 1
+  maxProjectileScale: 10
+  splashRadiusByLevel:
+  - 12
+  - 12
+  - 25
+  homingTurnSpeed: 0
+  detectionRange: 0
+  laserWidth: 0
+  laserDuration: 0
