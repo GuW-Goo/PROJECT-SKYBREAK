@@ -46,9 +46,15 @@ public class Enemy_Bullet : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        //부딪힌 오브젝트에서 함수 가져오기  
+        IDamageable target = collision.gameObject.GetComponent<IDamageable>();
+        //없으면 실행불가
+        if(target != null ) 
+            target.TakeDamage(1);
         //폭발 이펙트 생성(이펙트는 종료되면 자동삭제됨)
         Instantiate(explosion_effect,new Vector3(transform.position.x,transform.position.y,transform.position.z),Quaternion.identity);
         //오브젝트 삭제
         Destroy(gameObject);
+        
     }
 }

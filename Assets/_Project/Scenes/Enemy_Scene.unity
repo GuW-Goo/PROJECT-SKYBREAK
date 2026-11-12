@@ -211,6 +211,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &900203218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900203220}
+  - component: {fileID: 900203219}
+  m_Layer: 0
+  m_Name: Enemy_Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &900203219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900203218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb8de01e8a26434796379f11f02fe55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Spawner
+  enemy_List:
+  - {fileID: 2211007419710365832, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
+  - {fileID: 6959201880857078350, guid: f28edae0a8fff204c8eb18cb4267b9e3, type: 3}
+  - {fileID: 673763517870539566, guid: 46fb8b20711717348bea30abd1291f8a, type: 3}
+  spawn_point_List:
+  - {x: 0, y: 0, z: 110}
+  - {x: -60, y: 0, z: 110}
+  - {x: 60, y: 0, z: 110}
+--- !u!4 &900203220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900203218}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1216672781
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b2470e9848dde4f822e734287e9c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_Test
+<<<<<<< HEAD
 --- !u!1001 &7180640176995277023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -557,6 +610,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9186419fef9731b4880b54a337b03dee, type: 3}
+=======
+>>>>>>> parent of 1670fcb (26.11.12)
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -565,4 +620,8 @@ SceneRoots:
   - {fileID: 1216672783}
   - {fileID: 7180640176995277023}
   - {fileID: 1977181394}
+<<<<<<< HEAD
   - {fileID: 1494204002}
+=======
+  - {fileID: 900203220}
+>>>>>>> parent of 1670fcb (26.11.12)
