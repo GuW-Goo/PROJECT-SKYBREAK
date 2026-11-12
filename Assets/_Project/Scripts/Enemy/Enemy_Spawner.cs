@@ -13,15 +13,18 @@ public class Enemy_Spawner : MonoBehaviour
     
     //시간당 적들 생성하기위한 초 카운트
     private float spawn_Count;
+    //랜덤 변수
+    private int random_Number;
     // 적 패턴 조절하기위한 변수
     private int upgrade;
     //초기화
     void Start()
     {
-        //기본단계
         upgrade = 0;
         // 5초당 한번 생성 하도록 설정
         spawn_Count = 5;
+        // 일반 초기화
+        random_Number = 0;
         // 갯수확인 어차피 적 패턴을 다가지고 있을테니 0번째 오브젝트에서 갯수 확인
         pattern_List = enemy_List[0].GetComponents<Enemy_Move_Pattern>().Length;
         // 패턴 변수 증가 
