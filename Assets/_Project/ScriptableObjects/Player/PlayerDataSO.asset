@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 423b7ff0d9a0428499969c50ebbbb00f, type: 3}
-  m_Name: Enemy_Move_Speed
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Move_Speed
-  move_Speed: 15
+  m_Script: {fileID: 11500000, guid: 0f6c631ec239f86478ecb0cf5955d6ea, type: 3}
+  m_Name: PlayerDataSO
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDataSO
+  attackPower: 1
+  moveSpeed: 80
