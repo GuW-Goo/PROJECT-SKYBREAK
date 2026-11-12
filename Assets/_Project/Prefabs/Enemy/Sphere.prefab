@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 846731058967534053}
   - component: {fileID: 428047606054080940}
   m_Layer: 6
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/_Project/Prefabs/Enemy/Bullet/Nomal_Bullet.prefab
 <<<<<<< HEAD:Assets/_Project/Prefabs/Enemy/Bullet/Nomal_Bullet.prefab
   m_Name: Nomal_Bullet
@@ -26,6 +27,10 @@ GameObject:
   m_Name: Sphere
   m_TagString: Enemy
 >>>>>>> parent of d79e64e (26.11.09 feature):Assets/_Project/Prefabs/Enemy/Sphere.prefab
+=======
+  m_Name: Sphere
+  m_TagString: Enemy
+>>>>>>> parent of d79e64e (26.11.09 feature)
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
