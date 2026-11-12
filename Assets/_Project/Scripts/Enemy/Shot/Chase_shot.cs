@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Enemy_Bullet : MonoBehaviour
+public class Chase_shot : MonoBehaviour
 {
     [SerializeField] private Enemy_Move_Speed moveSpeed;//탄속
     [SerializeField] private GameObject explosion_effect;//폭발이펙트
@@ -47,8 +47,12 @@ public class Enemy_Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //폭발 이펙트 생성(이펙트는 종료되면 자동삭제됨)
-        Instantiate(explosion_effect,new Vector3(transform.position.x,transform.position.y,transform.position.z),Quaternion.identity);
+        Instantiate(explosion_effect, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         //오브젝트 삭제
+        Destroy(gameObject);
+    }
+    private void OnBecameInvisible()
+    {
         Destroy(gameObject);
     }
 }

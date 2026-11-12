@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1492707254539139244}
   - component: {fileID: 8976205946737938788}
   - component: {fileID: 846731058967534053}
-  - component: {fileID: 428047606054080940}
+  - component: {fileID: -3874389253594175385}
   m_Layer: 6
-  m_Name: Sphere
+  m_Name: Nomal_Bullet
   m_TagString: Enemy_Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &428047606054080940
+--- !u!114 &-3874389253594175385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,8 +150,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3021539937262888644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee8e4fb6aac546d42b1b36142814e79f, type: 3}
+  m_Script: {fileID: 11500000, guid: 96eb71e8fb6ae2e47b4cb4a1fd311660, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Bullet
-  moveSpeed: {fileID: 11400000, guid: ba1c766733d6488409e7e460372a78bd, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::Nomal_Shot
+  moveSpeed: {fileID: 11400000, guid: 34661a5fa713a16408bfb7848ac0674e, type: 2}
   explosion_effect: {fileID: 7621875707464560624, guid: 9b78eb64e851ccf428f62278b017e57e, type: 3}
