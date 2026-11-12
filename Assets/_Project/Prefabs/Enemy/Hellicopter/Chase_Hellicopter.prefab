@@ -234,6 +234,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8533514456092941953, guid: 2216d97797b56544d85f1cefc541070c, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 6774705505152118596}
+    - targetCorrespondingSourceObject: {fileID: 8533514456092941953, guid: 2216d97797b56544d85f1cefc541070c, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 8495575609901023566}
     - targetCorrespondingSourceObject: {fileID: 8533514456092941953, guid: 2216d97797b56544d85f1cefc541070c, type: 3}
       insertIndex: -1
@@ -267,6 +270,55 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8533514456092941953, guid: 2216d97797b56544d85f1cefc541070c, type: 3}
   m_PrefabInstance: {fileID: 1655406093693875407}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &6774705505152118596
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6959201880857078350}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &8495575609901023566
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -320,7 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3707acb4461e8449a840ecaebf8ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Pattern_Controller
-  enemy: {fileID: 6959201880857078350}
 --- !u!114 &4776272746279065143
 MonoBehaviour:
   m_ObjectHideFlags: 0

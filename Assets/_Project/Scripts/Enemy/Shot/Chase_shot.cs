@@ -51,4 +51,8 @@ public class Chase_shot : MonoBehaviour
         //오브젝트 삭제
         Destroy(gameObject);
     }
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -10,21 +10,6 @@ public class Enemy_Shot : MonoBehaviour
 
     private Transform playerTransform;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //발사 테스트
-        if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            fire();
-        }
-        
-    }
     
     //투사체 발사
     public void fire()

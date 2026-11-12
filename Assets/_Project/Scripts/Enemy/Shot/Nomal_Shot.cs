@@ -18,4 +18,8 @@ public class Nomal_Shot : MonoBehaviour
         //오브젝트 삭제
         Destroy(gameObject);
     }
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
