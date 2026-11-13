@@ -4,5 +4,6 @@ public enum WeaponType
     Spread,
     Charge,
     Homing,
-    Laser
+    Laser,
+    None
 }

@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private PlayerDataSO playerData;
+    [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Camera mainCamera;
 
     [SerializeField] private float boundaryMargin = 0.5f;
@@ -45,10 +46,12 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(playerData == null || rb == null || mainCamera == null)
+        if(playerData == null || playerStats == null || rb == null || mainCamera == null)
             return;
 
-        Vector3 nextPosition = rb.position + moveInput * playerData.MoveSpeed * Time.fixedDeltaTime;
+        float finalMoveSpeed = playerData.MoveSpeed + playerStats.CheckStat(StatType.MoveSpeed, WeaponType.None);
+
+        Vector3 nextPosition = rb.position + moveInput * finalMoveSpeed * Time.fixedDeltaTime;
 
         // 이동 범위 제한
         GetCameraBounds(out Vector2 xBounds, out Vector2 zBounds);

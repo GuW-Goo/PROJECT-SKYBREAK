@@ -10,8 +10,9 @@ public class WeaponChoiceManager : MonoBehaviour
     [Header("Player")]
     [SerializeField] PlayerCollision playerCollision;
 
-    [Header("All weapon SO list")]
+    [Header("All SO list")]
     [SerializeField] List<WeaponDataSO> allWeaponDataSOList;
+    [SerializeField] List<StatDataSO> allStatDataSOList;
 
     private List<WeaponDataSO> choices;
 
@@ -66,10 +67,16 @@ public class WeaponChoiceManager : MonoBehaviour
 
         Debug.Log($"선택한 무기 : {selectedWeapon.WeaponName}");
 
-        weaponManager.ChangeWeapon(selectedWeapon);
+        if(weaponManager.CurrentWeaponType == selectedWeapon.Type)
+        {
+            weaponManager.LevelUpWeapon(selectedWeapon.Type);
+        }
+        else
+        {
+            weaponManager.ChangeWeapon(selectedWeapon);
+        }
 
         isSelecting = false;
-
         Time.timeScale = 1f;
     }
 
@@ -88,6 +95,25 @@ public class WeaponChoiceManager : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             if (candidates.Count == 0) break;
+
+            int randomIndex = Random.Range(0, candidates.Count);
+            selected.Add(candidates[randomIndex]);
+            candidates.RemoveAt(randomIndex);
+        }
+
+        return selected;
+    }
+
+    private List<StatDataSO> GetRandomStatChoices(int count)
+    {
+        List<StatDataSO> candidates = new List<StatDataSO>(allStatDataSOList);
+        List<StatDataSO> selected = new();
+
+        count = Mathf.Max(0, count);
+
+        for(int i = 0; i < count; i++)
+        {
+            if(candidates.Count == 0) break;
 
             int randomIndex = Random.Range(0, candidates.Count);
             selected.Add(candidates[randomIndex]);

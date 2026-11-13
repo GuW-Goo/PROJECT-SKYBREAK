@@ -6,15 +6,13 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] ProjectilePoolManager projectilePoolManager;
     [SerializeField] WeaponRuntimeData runtimeData;
+    [SerializeField] PlayerStats playerStats;
     [SerializeField] WeaponDataSO defaultWeaponData;
 
     private BaseWeapon currentWeapon;
     private WeaponDataSO currentWeaponData;
 
-    private void Awake()
-    {
-        ChangeWeapon(defaultWeaponData);
-    }
+    public WeaponType CurrentWeaponType => currentWeaponData.Type;
 
     public void OnFirePressed()
     {
@@ -35,13 +33,6 @@ public class WeaponManager : MonoBehaviour
     {
         if (data == null)
             return;
-
-        // 동일 무기 선택 시
-        if(currentWeaponData == data)
-        {
-            currentWeapon.SetLevel(runtimeData.PlayerLevel);
-            return;
-        }
 
         // 아직 구현하지 않은 기능
         if (data.Type == WeaponType.Homing || data.Type == WeaponType.Laser)
@@ -83,23 +74,83 @@ public class WeaponManager : MonoBehaviour
         if (currentWeapon == null)
             return;
 
-        currentWeapon.Initialize(data, firePoint, projectilePoolManager, runtimeData.PlayerLevel);
+        currentWeapon.Initialize(
+            data,
+            firePoint,
+            projectilePoolManager,
+            runtimeData.GetWeaponLevel(data.Type)
+        );
+
         currentWeaponData = data;
+        RefreshWeaponStats();
+    }
+
+    public void LevelUpWeapon(WeaponType weaponType)
+    {
+        runtimeData.LevelUP(weaponType);
+
+        if (currentWeaponData != null &&
+            currentWeaponData.Type == weaponType)
+        {
+            currentWeapon.SetLevel(runtimeData.GetWeaponLevel(weaponType));
+        }
+    }
+
+    private void Start()
+    {
+        ChangeWeapon(defaultWeaponData);
     }
 
     private void OnEnable()
     {
-        runtimeData.OnPlayerLevelChanged += UpdateWeaponLevel;
-
+        runtimeData.OnWeaponLevelChanged += UpdateWeaponLevel;
+        playerStats.OnStatsChanged += UpdatePlayerStats;
     }
 
     private void OnDisable()
     {
-        runtimeData.OnPlayerLevelChanged -= UpdateWeaponLevel;
+        runtimeData.OnWeaponLevelChanged -= UpdateWeaponLevel;
+        playerStats.OnStatsChanged -= UpdatePlayerStats;
     }
 
-    private void UpdateWeaponLevel(int level)
+    private void UpdateWeaponLevel(WeaponType weaponType, int level)
     {
+        if(currentWeapon == null) 
+            return;
+        if (currentWeaponData.Type != weaponType)
+            return;
+
         currentWeapon?.SetLevel(level);
+    }
+
+    private void UpdatePlayerStats()
+    {
+        RefreshWeaponStats();
+    }
+
+    private void RefreshWeaponStats()
+    {
+        if (currentWeapon == null || currentWeaponData == null)
+            return;
+
+        int attackPower = currentWeaponData.AttackPower
+            + (int)playerStats.CheckStat(
+                StatType.AttackPower,
+                WeaponType.None
+            );
+
+        float fireInterval = currentWeaponData.FireInterval
+            - playerStats.CheckStat(
+                StatType.FireInterval,
+                WeaponType.None
+            );
+
+        float projectileSpeed = currentWeaponData.ProjectileSpeed
+            + playerStats.CheckStat(
+                StatType.ProjectileSpeed,
+                WeaponType.None
+            );
+
+        currentWeapon.UpdateStats(attackPower, fireInterval, projectileSpeed);
     }
 }
