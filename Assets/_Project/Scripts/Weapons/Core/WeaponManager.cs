@@ -6,15 +6,13 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] ProjectilePoolManager projectilePoolManager;
     [SerializeField] WeaponRuntimeData runtimeData;
+    [SerializeField] PlayerStats playerStats;
     [SerializeField] WeaponDataSO defaultWeaponData;
 
     private BaseWeapon currentWeapon;
     private WeaponDataSO currentWeaponData;
 
-    private void Awake()
-    {
-        ChangeWeapon(defaultWeaponData);
-    }
+    public WeaponType CurrentWeaponType => currentWeaponData.Type;
 
     public void OnFirePressed()
     {
@@ -35,13 +33,6 @@ public class WeaponManager : MonoBehaviour
     {
         if (data == null)
             return;
-
-        // 동일 무기 선택 시
-        if(currentWeaponData == data)
-        {
-            currentWeapon.SetLevel(runtimeData.PlayerLevel);
-            return;
-        }
 
         // 아직 구현하지 않은 기능
         if (data.Type == WeaponType.Homing || data.Type == WeaponType.Laser)
@@ -83,23 +74,99 @@ public class WeaponManager : MonoBehaviour
         if (currentWeapon == null)
             return;
 
-        currentWeapon.Initialize(data, firePoint, projectilePoolManager, runtimeData.PlayerLevel);
+        currentWeapon.Initialize(
+            data,
+            firePoint,
+            projectilePoolManager,
+            runtimeData.GetWeaponLevel(data.Type)
+        );
+
         currentWeaponData = data;
+        RefreshWeaponStats();
+    }
+
+    public void LevelUpWeapon(WeaponType weaponType)
+    {
+        runtimeData.LevelUP(weaponType);
+    }
+
+    private void Start()
+    {
+        ChangeWeapon(defaultWeaponData);
     }
 
     private void OnEnable()
     {
-        runtimeData.OnPlayerLevelChanged += UpdateWeaponLevel;
-
+        runtimeData.OnWeaponLevelChanged += UpdateWeaponLevel;
+        playerStats.OnStatsChanged += UpdatePlayerStats;
     }
 
     private void OnDisable()
     {
-        runtimeData.OnPlayerLevelChanged -= UpdateWeaponLevel;
+        runtimeData.OnWeaponLevelChanged -= UpdateWeaponLevel;
+        playerStats.OnStatsChanged -= UpdatePlayerStats;
     }
 
-    private void UpdateWeaponLevel(int level)
+    private void UpdateWeaponLevel(WeaponType weaponType, int level)
     {
+        if(currentWeapon == null) 
+            return;
+        if (currentWeaponData.Type != weaponType)
+            return;
+
         currentWeapon?.SetLevel(level);
+        RefreshWeaponStats();
+    }
+
+    private void UpdatePlayerStats()
+    {
+        RefreshWeaponStats();
+    }
+
+    private void RefreshWeaponStats()
+    {
+        if (currentWeapon == null || currentWeaponData == null)
+            return;
+
+        WeaponRuntimeStats stats = new WeaponRuntimeStats();
+
+        // 공통 능력치
+        stats.AttackPower = currentWeaponData.AttackPower
+            + (int)playerStats.CheckStat(StatType.AttackPower, WeaponType.None);
+        stats.FireInterval = currentWeaponData.FireInterval
+            - playerStats.CheckStat(StatType.FireInterval, WeaponType.None);
+        stats.ProjectileSpeed = currentWeaponData.ProjectileSpeed
+            + playerStats.CheckStat(StatType.ProjectileSpeed, WeaponType.None);
+
+        // 무기별 능력치
+        stats.AdditionalProjectiles = currentWeaponData.GetProjectileCount(runtimeData.GetWeaponLevel(currentWeaponData.Type))
+            + (int)playerStats.CheckStat(StatType.AdditionalProjectiles, currentWeaponData.Type);
+
+        stats.SpreadAngle = currentWeaponData.SpreadAngle
+            + playerStats.CheckStat(StatType.SpreadAngle, currentWeaponData.Type);
+
+        if (currentWeaponData.Type == WeaponType.Charge)
+        {
+            stats.ChargeSpeed = currentWeaponData.GetMaxChargeTime(
+                runtimeData.GetWeaponLevel(currentWeaponData.Type))
+                - playerStats.CheckStat(StatType.ChargeSpeed, currentWeaponData.Type
+            );
+            stats.ExplodeRange = currentWeaponData.GetSplashRadius(
+                runtimeData.GetWeaponLevel(currentWeaponData.Type))
+                + playerStats.CheckStat(StatType.ExplodeRange, currentWeaponData.Type
+            );
+        }
+
+        stats.DetectionRange = currentWeaponData.DetectionRange
+            + playerStats.CheckStat(StatType.DetectionRange, currentWeaponData.Type);
+
+        stats.LaserWidth = currentWeaponData.LaserWidth
+            + playerStats.CheckStat(StatType.LaserWidth, currentWeaponData.Type);
+
+        currentWeapon.UpdateStats(stats);
+
+        
+
+        currentWeapon.UpdateStats(stats);
     }
 }

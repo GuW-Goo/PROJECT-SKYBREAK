@@ -5,7 +5,7 @@ public class PlayerCollision : MonoBehaviour
 {
     private PlayerHealth playerHealth;
     private PlayerBomb playerBomb;
-    private WeaponRuntimeData weaponRuntimeData;
+    private WeaponManager weaponManager;
 
     public event Action OnWeaponItemCollected;
     
@@ -13,7 +13,7 @@ public class PlayerCollision : MonoBehaviour
     {
         playerHealth = GetComponent<PlayerHealth>();
         playerBomb = GetComponent<PlayerBomb>();
-        weaponRuntimeData = GetComponent<WeaponRuntimeData>();
+        weaponManager = GetComponentInChildren<WeaponManager>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -29,7 +29,6 @@ public class PlayerCollision : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("WeaponItem"))
         {
-            weaponRuntimeData.LevelUP();
             OnWeaponItemCollected.Invoke();
             Destroy(collision.gameObject);
         }

@@ -9,6 +9,8 @@ public abstract class BaseWeapon : MonoBehaviour
     protected ProjectilePoolManager projectilePool;
     protected int level;
 
+    protected WeaponRuntimeStats runtimeStats;
+
     protected bool IsFireReady => Time.time >= nextFireTime;
 
     public void Initialize(
@@ -21,6 +23,11 @@ public abstract class BaseWeapon : MonoBehaviour
         firePoint = point;
         projectilePool = poolManager;
         level = playerLevel;
+    }
+
+    public virtual void UpdateStats(WeaponRuntimeStats stats)
+    {
+        runtimeStats = stats;
     }
 
     public virtual void OnFirePressed()
@@ -47,13 +54,13 @@ public abstract class BaseWeapon : MonoBehaviour
 
         Fire();
 
-        nextFireTime = Time.time + weaponData.FireInterval;
+        nextFireTime = Time.time + Mathf.Max(0.05f, runtimeStats.FireInterval);
     }
 
-    public void SetLevel(int playerLevel)
+    public void SetLevel(int weaponLevel)
     {
-        Debug.Log("무기를 강화합니다. 현재 레벨 : " + playerLevel);
-        level = playerLevel;
+        Debug.Log("무기를 강화합니다. 현재 레벨 : " + weaponLevel);
+        level = weaponLevel;
     }
 
     protected void SpawnProjectile(Vector3 position, Vector3 direction)
@@ -64,8 +71,8 @@ public abstract class BaseWeapon : MonoBehaviour
         projectile.transform.rotation = Quaternion.LookRotation(direction);
 
         projectile.Initialize(
-            weaponData.AttackPower,
-            weaponData.ProjectileSpeed,
+            runtimeStats.AttackPower,
+            runtimeStats.ProjectileSpeed,
             weaponData.LifeTime,
             weaponData.HitEffectPrefab
         );
@@ -91,7 +98,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
         chargeProjectile.Initialize(
             damage,
-            weaponData.ProjectileSpeed,
+            runtimeStats.ProjectileSpeed,
             weaponData.LifeTime,
             splashRadius,
             canSplash,

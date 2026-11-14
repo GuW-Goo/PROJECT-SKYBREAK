@@ -331,7 +331,7 @@ Transform:
   m_GameObject: {fileID: 4625244993055758934}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.65, z: 15}
+  m_LocalPosition: {x: 0, y: 0, z: 15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -417,6 +417,7 @@ GameObject:
   - component: {fileID: 8738286587528243816}
   - component: {fileID: 5895212520926698997}
   - component: {fileID: 8687888613427279637}
+  - component: {fileID: 5456676071349713879}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -433,7 +434,7 @@ Transform:
   m_GameObject: {fileID: 5357003754503942275}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.716}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -517,6 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   playerData: {fileID: 11400000, guid: 140217f6baa4d5143a9df29463b0f1d4, type: 2}
+  playerStats: {fileID: 5456676071349713879}
   mainCamera: {fileID: 0}
   boundaryMargin: 10
 --- !u!114 &5032112541398396301
@@ -531,8 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cebfcaf97b7da34a99aa7c5ad6491ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponRuntimeData
-  maxPlayerLevel: 3
-  playerLevel: 1
+  maxWeaponLevel: 3
   bonusAttackPower: 0
   bonusFireRate: 0
 --- !u!114 &8738286587528243816
@@ -576,6 +577,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBomb
   playerData: {fileID: 11400000, guid: 140217f6baa4d5143a9df29463b0f1d4, type: 2}
   bombDamage: 50
+--- !u!114 &5456676071349713879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5357003754503942275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e321e4b29100e4abbe6a7703d949c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
 --- !u!1 &5851660740532924942
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,4 +874,5 @@ MonoBehaviour:
   firePoint: {fileID: 2146454439518907162}
   projectilePoolManager: {fileID: 0}
   runtimeData: {fileID: 5032112541398396301}
+  playerStats: {fileID: 5456676071349713879}
   defaultWeaponData: {fileID: 11400000, guid: 782e683ed0332b34e845eda23a1508d3, type: 2}
