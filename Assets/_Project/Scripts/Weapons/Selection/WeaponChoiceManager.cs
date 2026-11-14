@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,12 +11,13 @@ public class WeaponChoiceManager : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] PlayerCollision playerCollision;
+    [SerializeField] PlayerStats playerStats;
 
     [Header("All SO list")]
     [SerializeField] List<WeaponDataSO> allWeaponDataSOList;
     [SerializeField] List<StatDataSO> allStatDataSOList;
 
-    private List<WeaponDataSO> choices;
+    private List<ChoiceData> choices;
 
     private bool isSelecting = false;
 
@@ -30,7 +33,15 @@ public class WeaponChoiceManager : MonoBehaviour
 
     private void HandleWeaponItemCollected()
     {
-        choices = GetRandomWeaponChoices(3);
+        List<WeaponDataSO> weapons = GetRandomWeaponChoices(3);
+        List<StatDataSO> stats = GetRandomStatChoices(3);
+
+        choices = new List<ChoiceData>();
+
+        for (int i = 0; i < Mathf.Min(weapons.Count, stats.Count); i++)
+        {
+            choices.Add(new ChoiceData(weapons[i], stats[i]));
+        }
 
         if (choices.Count == 0)
         {
@@ -40,9 +51,11 @@ public class WeaponChoiceManager : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        for(int i = 0; i < choices.Count; i++)
+        for (int i = 0; i < choices.Count; i++)
         {
-            Debug.Log($"{i + 1} 번째 무기: {choices[i].WeaponName}");
+            Debug.Log(
+                $"{i + 1}번 선택지: {choices[i].WeaponData.WeaponName} + {choices[i].StatData.StatName}"
+            );
         }
 
         isSelecting = true;
@@ -53,28 +66,34 @@ public class WeaponChoiceManager : MonoBehaviour
         if (!isSelecting || Keyboard.current == null)
             return;
 
-        if (Keyboard.current.digit1Key.wasPressedThisFrame) SelectWeapon(0);
-        if (Keyboard.current.digit2Key.wasPressedThisFrame) SelectWeapon(1);
-        if (Keyboard.current.digit3Key.wasPressedThisFrame) SelectWeapon(2);
+        if (Keyboard.current.digit1Key.wasPressedThisFrame) SelectChoice(0);
+        if (Keyboard.current.digit2Key.wasPressedThisFrame) SelectChoice(1);
+        if (Keyboard.current.digit3Key.wasPressedThisFrame) SelectChoice(2);
     }
 
-    private void SelectWeapon(int index)
+    private void SelectChoice(int index)
     {
         if (index < 0 || index >= choices.Count)
             return;
 
-        WeaponDataSO selectedWeapon = choices[index];
+        ChoiceData selected = choices[index];
 
-        Debug.Log($"선택한 무기 : {selectedWeapon.WeaponName}");
-
-        if(weaponManager.CurrentWeaponType == selectedWeapon.Type)
+        // 무기 교체 또는 강화
+        if (weaponManager.CurrentWeaponType == selected.WeaponData.Type)
         {
-            weaponManager.LevelUpWeapon(selectedWeapon.Type);
+            weaponManager.LevelUpWeapon(selected.WeaponData.Type);
         }
         else
         {
-            weaponManager.ChangeWeapon(selectedWeapon);
+            weaponManager.ChangeWeapon(selected.WeaponData);
         }
+
+        // 능력치 적용
+        playerStats.ApplyStat(selected.StatData);
+
+        WeaponType targetWeapon = selected.StatData.TargetWeapons.Length == 0
+            ? WeaponType.None
+            : selected.WeaponData.Type;
 
         isSelecting = false;
         Time.timeScale = 1f;
@@ -122,4 +141,6 @@ public class WeaponChoiceManager : MonoBehaviour
 
         return selected;
     }
+
+
 }

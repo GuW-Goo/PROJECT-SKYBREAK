@@ -9,9 +9,7 @@ public abstract class BaseWeapon : MonoBehaviour
     protected ProjectilePoolManager projectilePool;
     protected int level;
 
-    protected int finalAttackPower;
-    protected float finalFireInterval;
-    protected float finalProjectileSpeed;
+    protected WeaponRuntimeStats runtimeStats;
 
     protected bool IsFireReady => Time.time >= nextFireTime;
 
@@ -27,11 +25,9 @@ public abstract class BaseWeapon : MonoBehaviour
         level = playerLevel;
     }
 
-    public void UpdateStats(int attackPower, float fireInterval, float projectileSpeed)
+    public virtual void UpdateStats(WeaponRuntimeStats stats)
     {
-        finalAttackPower = attackPower;
-        finalFireInterval = fireInterval;
-        finalProjectileSpeed = projectileSpeed;
+        runtimeStats = stats;
     }
 
     public virtual void OnFirePressed()
@@ -58,7 +54,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
         Fire();
 
-        nextFireTime = Time.time + finalFireInterval;
+        nextFireTime = Time.time + Mathf.Max(0.05f, runtimeStats.FireInterval);
     }
 
     public void SetLevel(int weaponLevel)
@@ -75,8 +71,8 @@ public abstract class BaseWeapon : MonoBehaviour
         projectile.transform.rotation = Quaternion.LookRotation(direction);
 
         projectile.Initialize(
-            finalAttackPower,
-            finalProjectileSpeed,
+            runtimeStats.AttackPower,
+            runtimeStats.ProjectileSpeed,
             weaponData.LifeTime,
             weaponData.HitEffectPrefab
         );
@@ -102,7 +98,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
         chargeProjectile.Initialize(
             damage,
-            weaponData.ProjectileSpeed,
+            runtimeStats.ProjectileSpeed,
             weaponData.LifeTime,
             splashRadius,
             canSplash,

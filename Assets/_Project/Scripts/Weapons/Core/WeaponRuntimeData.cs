@@ -32,11 +32,6 @@ public class WeaponRuntimeData : MonoBehaviour
         weaponLevels[weaponType]++;
 
         OnWeaponLevelChanged?.Invoke(weaponType, weaponLevels[weaponType]);
-
-        foreach(WeaponType type in Enum.GetValues(typeof(WeaponType)))
-        {
-            Debug.Log($"{type} : lv.{weaponLevels[type]}");
-        }
     }
 
     private void Awake()

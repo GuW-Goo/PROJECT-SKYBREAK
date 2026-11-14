@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4747473797090907156}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.92304, z: -0.87389}
+  m_LocalPosition: {x: 0, y: 0, z: -22.71506}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,7 +46,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponChoiceManager
   weaponManager: {fileID: 0}
   playerCollision: {fileID: 0}
+  playerStats: {fileID: 0}
   allWeaponDataSOList:
   - {fileID: 11400000, guid: 782e683ed0332b34e845eda23a1508d3, type: 2}
   - {fileID: 11400000, guid: 12f552680a770234894ffef5168fb26b, type: 2}
   - {fileID: 11400000, guid: 4c6ee0d80b35b8348ae11742851a87ca, type: 2}
+  allStatDataSOList:
+  - {fileID: 11400000, guid: d48b579aa252b5c4eb753cffebb2d6d0, type: 2}
+  - {fileID: 11400000, guid: a8a9a5699ecf0854ca32d8945bdae5de, type: 2}
+  - {fileID: 11400000, guid: 48fe5f3952dac3d41aad608b3bbe167d, type: 2}
+  - {fileID: 11400000, guid: 6a62597b45808d040b838d62ea295a4c, type: 2}
+  - {fileID: 11400000, guid: b80fd47a57171fc47aad08f07b903e74, type: 2}
+  - {fileID: 11400000, guid: 2dfe00c8ef50a824199ba1498e767918, type: 2}
+  - {fileID: 11400000, guid: 48fe5f3952dac3d41aad608b3bbe167d, type: 2}
+  - {fileID: 11400000, guid: 3d6bc5c84a58c964f8e3f2764e14d7db, type: 2}
+  - {fileID: 11400000, guid: 0df5c1fea58c9754b96d6524e5668a3c, type: 2}
+  - {fileID: 11400000, guid: 61a348720dd77ad42b5b4c2d9d8f051f, type: 2}

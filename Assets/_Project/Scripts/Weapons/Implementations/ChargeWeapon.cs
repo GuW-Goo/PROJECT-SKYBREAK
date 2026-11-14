@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class ChargeWeapon : BaseWeapon
 {
@@ -11,8 +10,11 @@ public class ChargeWeapon : BaseWeapon
     private bool isCharging;
     private bool hasReachedMaxCharge;
 
-    int finalDamage;
-    float finalProjectileScale;
+    private int finalDamage;
+    private float finalProjectileScale;
+    private float currentMaxChargeTime;
+
+    private float MaxChargeTime => Mathf.Max(0.05f, runtimeStats.ChargeSpeed);
 
     private void Awake()
     {
@@ -27,6 +29,8 @@ public class ChargeWeapon : BaseWeapon
         isCharging = true;
         hasReachedMaxCharge = false;
 
+        currentMaxChargeTime = MaxChargeTime;
+
         chargeStartTime = Time.time;
         chargeTime = 0.0f;
 
@@ -38,22 +42,23 @@ public class ChargeWeapon : BaseWeapon
         if (!isCharging)
             return;
 
+
         chargeTime = Mathf.Min(
             Time.time - chargeStartTime,
-            weaponData.GetMaxChargeTime(level)
+            currentMaxChargeTime
         );
 
         // 시각 효과 크기 갱신
         float visualRatio = Mathf.InverseLerp(
             0.0f,
-            weaponData.GetMaxChargeTime(level),
+            currentMaxChargeTime,
             chargeTime
         );
 
         chargeVisual.UpdateChargeSize(visualRatio);
 
         // 최대 충전 도달
-        if(chargeTime >= weaponData.GetMaxChargeTime(level) && !hasReachedMaxCharge)
+        if(chargeTime >= currentMaxChargeTime && !hasReachedMaxCharge)
         {
             hasReachedMaxCharge = true;
             chargeVisual.SetFullyCharged(true);
@@ -69,11 +74,11 @@ public class ChargeWeapon : BaseWeapon
 
         // 최대 충전 여부 확인
         chargeTime = Time.time - chargeStartTime;
-        hasReachedMaxCharge = chargeTime >= weaponData.GetMaxChargeTime(level);
+        hasReachedMaxCharge = chargeTime >= currentMaxChargeTime;
 
         if (hasReachedMaxCharge)
         {
-            finalDamage = weaponData.MaxChargeAttackPower;
+            finalDamage = weaponData.MaxChargeAttackPower + runtimeStats.AttackPower;
             finalProjectileScale = weaponData.MaxProjectileScale;
         }
         else
@@ -86,6 +91,11 @@ public class ChargeWeapon : BaseWeapon
         chargeVisual.HideCharge();
     }
 
+    public override void OnUnequip()
+    {
+        CancelCharge();
+    }
+
     protected override void Fire()
     {
         SpawnChargeProjectile(
@@ -93,8 +103,20 @@ public class ChargeWeapon : BaseWeapon
             firePoint.forward,
             finalDamage,
             finalProjectileScale,
-            weaponData.GetSplashRadius(level),
+            runtimeStats.ExplodeRange,
             hasReachedMaxCharge
         );
+    }
+
+    private void CancelCharge()
+    {
+        isCharging = false;
+        hasReachedMaxCharge = false;
+
+        chargeTime = 0f;
+        chargeStartTime = 0f;
+
+        chargeVisual.SetFullyCharged( false );
+        chargeVisual.HideCharge();
     }
 }

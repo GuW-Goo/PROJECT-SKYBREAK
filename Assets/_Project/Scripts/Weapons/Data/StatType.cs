@@ -12,5 +12,5 @@ public enum StatType
     ExplodeRange,
 
     LaserWidth,
-    DetectingRange
+    DetectionRange
 }

@@ -1,4 +1,3 @@
-using Mono.Cecil;
 using UnityEngine;
 
 public class SpreadWeapon : BaseWeapon
@@ -7,8 +6,8 @@ public class SpreadWeapon : BaseWeapon
 
     protected override void Fire()
     {
-        int count = weaponData.GetProjectileCount(level);
-        float totalAngle = weaponData.SpreadAngle;
+        int count = runtimeStats.AdditionalProjectiles;
+        float totalAngle = runtimeStats.SpreadAngle;
 
         if(count == 1)
         {

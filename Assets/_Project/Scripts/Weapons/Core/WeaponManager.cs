@@ -88,12 +88,6 @@ public class WeaponManager : MonoBehaviour
     public void LevelUpWeapon(WeaponType weaponType)
     {
         runtimeData.LevelUP(weaponType);
-
-        if (currentWeaponData != null &&
-            currentWeaponData.Type == weaponType)
-        {
-            currentWeapon.SetLevel(runtimeData.GetWeaponLevel(weaponType));
-        }
     }
 
     private void Start()
@@ -121,6 +115,7 @@ public class WeaponManager : MonoBehaviour
             return;
 
         currentWeapon?.SetLevel(level);
+        RefreshWeaponStats();
     }
 
     private void UpdatePlayerStats()
@@ -133,24 +128,45 @@ public class WeaponManager : MonoBehaviour
         if (currentWeapon == null || currentWeaponData == null)
             return;
 
-        int attackPower = currentWeaponData.AttackPower
-            + (int)playerStats.CheckStat(
-                StatType.AttackPower,
-                WeaponType.None
-            );
+        WeaponRuntimeStats stats = new WeaponRuntimeStats();
 
-        float fireInterval = currentWeaponData.FireInterval
-            - playerStats.CheckStat(
-                StatType.FireInterval,
-                WeaponType.None
-            );
+        // 공통 능력치
+        stats.AttackPower = currentWeaponData.AttackPower
+            + (int)playerStats.CheckStat(StatType.AttackPower, WeaponType.None);
+        stats.FireInterval = currentWeaponData.FireInterval
+            - playerStats.CheckStat(StatType.FireInterval, WeaponType.None);
+        stats.ProjectileSpeed = currentWeaponData.ProjectileSpeed
+            + playerStats.CheckStat(StatType.ProjectileSpeed, WeaponType.None);
 
-        float projectileSpeed = currentWeaponData.ProjectileSpeed
-            + playerStats.CheckStat(
-                StatType.ProjectileSpeed,
-                WeaponType.None
-            );
+        // 무기별 능력치
+        stats.AdditionalProjectiles = currentWeaponData.GetProjectileCount(runtimeData.GetWeaponLevel(currentWeaponData.Type))
+            + (int)playerStats.CheckStat(StatType.AdditionalProjectiles, currentWeaponData.Type);
 
-        currentWeapon.UpdateStats(attackPower, fireInterval, projectileSpeed);
+        stats.SpreadAngle = currentWeaponData.SpreadAngle
+            + playerStats.CheckStat(StatType.SpreadAngle, currentWeaponData.Type);
+
+        if (currentWeaponData.Type == WeaponType.Charge)
+        {
+            stats.ChargeSpeed = currentWeaponData.GetMaxChargeTime(
+                runtimeData.GetWeaponLevel(currentWeaponData.Type))
+                - playerStats.CheckStat(StatType.ChargeSpeed, currentWeaponData.Type
+            );
+            stats.ExplodeRange = currentWeaponData.GetSplashRadius(
+                runtimeData.GetWeaponLevel(currentWeaponData.Type))
+                + playerStats.CheckStat(StatType.ExplodeRange, currentWeaponData.Type
+            );
+        }
+
+        stats.DetectionRange = currentWeaponData.DetectionRange
+            + playerStats.CheckStat(StatType.DetectionRange, currentWeaponData.Type);
+
+        stats.LaserWidth = currentWeaponData.LaserWidth
+            + playerStats.CheckStat(StatType.LaserWidth, currentWeaponData.Type);
+
+        currentWeapon.UpdateStats(stats);
+
+        
+
+        currentWeapon.UpdateStats(stats);
     }
 }

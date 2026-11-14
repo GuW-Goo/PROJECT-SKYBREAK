@@ -58,6 +58,6 @@ public class PlayerStats : MonoBehaviour
             playerStats[key] = value + stat;
         }
 
-        OnStatsChanged.Invoke();
+        OnStatsChanged?.Invoke();
     }
 }
