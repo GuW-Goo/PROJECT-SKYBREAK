@@ -40,7 +40,6 @@ public class WeaponDataSO : ScriptableObject
     [SerializeField] private float[] splashRadiusByLevel = { 1.2f, 1.2f, 2.5f };
 
     [Header("Homing")]
-    [SerializeField] private float homingTurnSpeed;
     [SerializeField] private float detectionRange;
 
     [Header("Laser")]
@@ -92,7 +91,6 @@ public class WeaponDataSO : ScriptableObject
     }
 
     // 유도형
-    public float HomingTurnSpeed => homingTurnSpeed;
     public float DetectionRange => detectionRange;
 
     // 레이저

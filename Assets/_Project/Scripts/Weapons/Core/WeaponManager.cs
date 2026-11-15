@@ -34,10 +34,6 @@ public class WeaponManager : MonoBehaviour
         if (data == null)
             return;
 
-        // 아직 구현하지 않은 기능
-        if (data.Type == WeaponType.Homing || data.Type == WeaponType.Laser)
-            return;
-
         if (currentWeapon != null)
         {
             currentWeapon.OnUnequip();
@@ -60,11 +56,11 @@ public class WeaponManager : MonoBehaviour
             case WeaponType.Charge:
                 currentWeapon = gameObject.AddComponent<ChargeWeapon>();
                 break;
-            /*
+            
             case WeaponType.Homing:
                 currentWeapon = gameObject.AddComponent<HomingWeapon>();
                 break;
-
+            /*
             case WeaponType.Laser:
                 currentWeapon = gameObject.AddComponent<LaserWeapon>();
                 break;
