@@ -15,7 +15,7 @@ public class Enemy_Pattern_Controller : MonoBehaviour
         {
             pattern.enabled = false;
         }
-        //범위에 맞으면 해당 패턴 활성화
+        //호출해서 범위에 맞으면 해당 패턴 활성화
         if(patternIndex >= 0 && patternIndex < patterns.Length)
         {
             patterns[patternIndex].enabled = true;
