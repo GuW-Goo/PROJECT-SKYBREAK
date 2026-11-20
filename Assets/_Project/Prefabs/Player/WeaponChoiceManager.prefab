@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 12f552680a770234894ffef5168fb26b, type: 2}
   - {fileID: 11400000, guid: 4c6ee0d80b35b8348ae11742851a87ca, type: 2}
   - {fileID: 11400000, guid: 5fe899e6495f88b4fb964db13f44893b, type: 2}
+  - {fileID: 11400000, guid: 3fbaf2b4ef2df2c40bd299751dac9b16, type: 2}
   allStatDataSOList:
   - {fileID: 11400000, guid: d48b579aa252b5c4eb753cffebb2d6d0, type: 2}
   - {fileID: 11400000, guid: a8a9a5699ecf0854ca32d8945bdae5de, type: 2}

@@ -13,7 +13,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected bool IsFireReady => Time.time >= nextFireTime;
 
-    public void Initialize(
+    public virtual void Initialize(
         WeaponDataSO data,
         Transform point,
         ProjectilePoolManager poolManager,

@@ -60,11 +60,10 @@ public class WeaponManager : MonoBehaviour
             case WeaponType.Homing:
                 currentWeapon = gameObject.AddComponent<HomingWeapon>();
                 break;
-            /*
+
             case WeaponType.Laser:
                 currentWeapon = gameObject.AddComponent<LaserWeapon>();
                 break;
-            */
         }
 
         if (currentWeapon == null)
@@ -158,10 +157,6 @@ public class WeaponManager : MonoBehaviour
 
         stats.LaserWidth = currentWeaponData.LaserWidth
             + playerStats.CheckStat(StatType.LaserWidth, currentWeaponData.Type);
-
-        currentWeapon.UpdateStats(stats);
-
-        
 
         currentWeapon.UpdateStats(stats);
     }

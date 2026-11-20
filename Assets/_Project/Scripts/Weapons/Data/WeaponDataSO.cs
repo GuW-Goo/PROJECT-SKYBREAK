@@ -45,6 +45,7 @@ public class WeaponDataSO : ScriptableObject
     [Header("Laser")]
     [SerializeField] private float laserWidth;
     [SerializeField] private float laserDuration;
+    [SerializeField] private int piercingLevel;
 
     // 공통
     public string WeaponName => weaponName;
@@ -96,4 +97,5 @@ public class WeaponDataSO : ScriptableObject
     // 레이저
     public float LaserWidth => laserWidth;
     public float LaserDuration => laserDuration;
+    public int PiercingLevel => piercingLevel;
 }

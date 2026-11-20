@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class HomingProjectile :BaseProjectile
 {
+    [Header("Homing Setting")]
+    [SerializeField] private float detectionAngle = 90f;   // 감지 각도
+    [SerializeField] private float farTurnRate = 360f;     // 멀 때 선회율 (deg/s)
+    [SerializeField] private float nearTurnRate = 540f;    // 가까울 때 선회율 (deg/s)
+    [SerializeField] private float nearDist = 15f;         // 이 거리 이하 = 최대 선회
+    [SerializeField] private float farDist = 75f;          // 이 거리 이상 = 최소 선회
+
     private float detectionRange;
     private Transform target;
 
-    const float detectionAngle = 90f;
+    
 
     public void Initialize(
         int damage,
@@ -69,9 +76,6 @@ public class HomingProjectile :BaseProjectile
 
         foreach (Collider collider in colliders)
         {
-            if (!collider.CompareTag("Enemy"))
-                continue;
-
             if (!collider.TryGetComponent<IDamageable>(out _))
                 continue;
 
@@ -111,12 +115,7 @@ public class HomingProjectile :BaseProjectile
     /// <param name="speed">현재 탄속 (런타임 변경 가능)</param>
     /// <param name="dt">Time.deltaTime</param>
     /// <returns>이번 프레임에 적용할 새 진행 방향 (정규화)</returns>
-    private Vector3 SteerToTarget(
-        Vector3 currentPos, Vector3 currentDir, Transform target, float speed,
-        float farTurnRate = 60f,     // 멀 때 선회율 (deg/s)
-        float nearTurnRate = 1080f,  // 가까울 때 선회율 (deg/s)
-        float nearDist = 15f,        // 이 거리 이하 = 최대 선회
-        float farDist = 150f)        // 이 거리 이상 = 최소 선회
+    private Vector3 SteerToTarget(Vector3 currentPos, Vector3 currentDir, Transform target, float speed)        
     {
         currentDir.y = 0f;
         currentDir = currentDir.sqrMagnitude > 0.0001f ? currentDir.normalized : Vector3.forward;
@@ -154,6 +153,7 @@ public class HomingProjectile :BaseProjectile
             Instantiate(explosionEffect, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             target.TakeDamage(damage);
             poolManager.ReturnProjectile(this);
+            Instantiate(explosionEffect, this.transform.position, Quaternion.identity);
         }
     }
 }

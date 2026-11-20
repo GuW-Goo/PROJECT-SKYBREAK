@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7175682048936650874, guid: 2802a6a90bfec444e84bf05c0bb87de3, type: 3}
       propertyPath: m_Name
-      value: HomingProjectile Variant
+      value: HomingProjectile
       objectReference: {fileID: 0}
     - target: {fileID: 7391575988290846422, guid: 2802a6a90bfec444e84bf05c0bb87de3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -79,3 +79,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HomingProjectile
   margin: 0
+  detectionAngle: 90
+  farTurnRate: 100
+  nearTurnRate: 720
+  nearDist: 10
+  farDist: 75

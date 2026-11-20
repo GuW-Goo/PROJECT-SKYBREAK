@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponDataSO
   weaponName: "\uC720\uB3C4\uD615"
   weaponType: 3
-  projectileCounts: 010000000100000001000000
+  projectileCounts: 010000000200000003000000
   attackPower: 10
   fireInterval: 0.5
   lifeTime: 7
   projectilePrefab: {fileID: 8774698097251443699, guid: 94e15802f8a8fd44993b1fd913c1e5d1, type: 3}
   hitEffectPrefab: {fileID: 7621875707464560624, guid: 5c4f291345edfa043b05e4e83a3d0915, type: 3}
   projectileSpeed: 100
-  projectileSpacing: 0
+  projectileSpacing: 7
   spreadAngle: 0
   minChargeTime: 0
   maxChargeTime:
@@ -36,7 +36,6 @@ MonoBehaviour:
   - 1.2
   - 1.2
   - 2.5
-  homingTurnSpeed: 100
   detectionRange: 200
   laserWidth: 0
   laserDuration: 0
