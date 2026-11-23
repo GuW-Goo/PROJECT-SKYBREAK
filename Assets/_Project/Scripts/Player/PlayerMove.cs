@@ -78,6 +78,7 @@ public class PlayerMove : MonoBehaviour
     /// <param name="zBounds">z축 이동 가능 범위 (최소값, 최대값)</param>
     private void GetCameraBounds(out Vector2 xBounds, out Vector2 zBounds)
     {
+        // 플레이어의 y좌표 Plane (xz로 Plane 생성)
         Plane playerPlane = new Plane(
             Vector3.up,
             new Vector3(0.0f, rb.position.y, 0.0f)

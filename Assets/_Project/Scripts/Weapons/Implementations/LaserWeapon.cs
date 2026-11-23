@@ -38,6 +38,7 @@ public class LaserWeapon : BaseWeapon
             halfRange
         );
 
+        // 레이저 범위에 피격된 적들 저장
         Collider[] colliders = Physics.OverlapBox(
             center,
             halfExtents,
@@ -54,6 +55,7 @@ public class LaserWeapon : BaseWeapon
         }
     }
 
+    // 관통되지 않는 레이저
     private void AttackNonPiercing(Collider[] colliders)
     {
         float closestDistance = float.MaxValue;
@@ -65,6 +67,7 @@ public class LaserWeapon : BaseWeapon
             if (!collider.TryGetComponent<IDamageable>(out var target))
                 continue;
 
+            // 발사 방향 뒤쪽에 있는 적 제외
             float distance = (
                 collider.transform.position.z - firePoint.position.z
             ) * Mathf.Sign(firePoint.forward.z);
@@ -101,6 +104,7 @@ public class LaserWeapon : BaseWeapon
         }
     }
 
+    // 관통되는 레이저
     private void AttackPiercing(Collider[] colliders)
     {
         HashSet<IDamageable> hitTargets = new HashSet<IDamageable>();
@@ -110,7 +114,15 @@ public class LaserWeapon : BaseWeapon
             if (!collider.TryGetComponent<IDamageable>(out var target))
                 continue;
 
-            if(!hitTargets.Add(target))
+            // 발사 방향 뒤쪽에 있는 적 제외
+            float distance = (
+                collider.transform.position.z - firePoint.position.z
+            ) * Mathf.Sign(firePoint.forward.z);
+
+            if (distance < 0f)
+                continue;
+
+            if (!hitTargets.Add(target))
                 continue;
 
             target.TakeDamage(runtimeStats.AttackPower);
