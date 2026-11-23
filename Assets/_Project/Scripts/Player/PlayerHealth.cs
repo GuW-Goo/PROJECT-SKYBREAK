@@ -43,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        OnPlayerDied.Invoke();
+        OnPlayerDied?.Invoke();
     }
 
     // 무적시간동안 Player가 깜빡임

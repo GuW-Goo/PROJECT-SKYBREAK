@@ -11,15 +11,13 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
-        {
-            Instance = this;
-            CurrentState = GameState.Ready;
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
+
+        Instance = this;
     }
 
     private void Start()
@@ -70,9 +68,9 @@ public class GameManager : MonoBehaviour
     { 
         CurrentState = GameState.GameOver;
         Debug.Log("GameOver");
+
         // GameOver æ¿¿¸»Ø
+        GameSceneManager.Instance.LoadScene(SceneName.GameOver);
 
-
-        
     }
 }
