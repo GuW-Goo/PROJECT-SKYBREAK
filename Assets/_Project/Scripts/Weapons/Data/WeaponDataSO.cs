@@ -40,12 +40,12 @@ public class WeaponDataSO : ScriptableObject
     [SerializeField] private float[] splashRadiusByLevel = { 1.2f, 1.2f, 2.5f };
 
     [Header("Homing")]
-    [SerializeField] private float homingTurnSpeed;
     [SerializeField] private float detectionRange;
 
     [Header("Laser")]
     [SerializeField] private float laserWidth;
     [SerializeField] private float laserDuration;
+    [SerializeField] private int piercingLevel;
 
     // 공통
     public string WeaponName => weaponName;
@@ -92,10 +92,10 @@ public class WeaponDataSO : ScriptableObject
     }
 
     // 유도형
-    public float HomingTurnSpeed => homingTurnSpeed;
     public float DetectionRange => detectionRange;
 
     // 레이저
     public float LaserWidth => laserWidth;
     public float LaserDuration => laserDuration;
+    public int PiercingLevel => piercingLevel;
 }

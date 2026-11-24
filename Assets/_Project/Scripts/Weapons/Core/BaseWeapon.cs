@@ -13,7 +13,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected bool IsFireReady => Time.time >= nextFireTime;
 
-    public void Initialize(
+    public virtual void Initialize(
         WeaponDataSO data,
         Transform point,
         ProjectilePoolManager poolManager,
@@ -106,6 +106,30 @@ public abstract class BaseWeapon : MonoBehaviour
         );
 
         chargeProjectile.Activate();
+    }
+
+    protected void SpawnHomingProjectile(
+        Vector3 position,
+        Vector3 direction,
+        int damage,
+        float detectionRange)
+    {
+        BaseProjectile projectile = projectilePool.GetProjectile(weaponData.ProjectilePrefab);
+
+        HomingProjectile homingProjectile = (HomingProjectile)projectile;
+
+        homingProjectile.transform.position = position;
+        homingProjectile.transform.rotation = Quaternion.LookRotation(direction);
+
+        homingProjectile.Initialize(
+            damage,
+            runtimeStats.ProjectileSpeed,
+            weaponData.LifeTime,
+            weaponData.HitEffectPrefab,
+            detectionRange
+        );
+
+        homingProjectile.Activate();
     }
 
     // 무기별 공격 방식 구현

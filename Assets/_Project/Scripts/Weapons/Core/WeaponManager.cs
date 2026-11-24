@@ -29,15 +29,13 @@ public class WeaponManager : MonoBehaviour
         currentWeapon?.OnFireReleased();
     }
 
+    // 기존 무기의 사용을 종료하고 새 무기로 교체
     public void ChangeWeapon(WeaponDataSO data)
     {
         if (data == null)
             return;
 
-        // 아직 구현하지 않은 기능
-        if (data.Type == WeaponType.Homing || data.Type == WeaponType.Laser)
-            return;
-
+        // 장착 무기가 비었는지 확인
         if (currentWeapon != null)
         {
             currentWeapon.OnUnequip();
@@ -47,6 +45,7 @@ public class WeaponManager : MonoBehaviour
             currentWeapon = null;
         }
 
+        // 무기 컴포넌트 장착
         switch(data.Type)
         {
             case WeaponType.Straight:
@@ -60,7 +59,7 @@ public class WeaponManager : MonoBehaviour
             case WeaponType.Charge:
                 currentWeapon = gameObject.AddComponent<ChargeWeapon>();
                 break;
-            /*
+            
             case WeaponType.Homing:
                 currentWeapon = gameObject.AddComponent<HomingWeapon>();
                 break;
@@ -68,7 +67,6 @@ public class WeaponManager : MonoBehaviour
             case WeaponType.Laser:
                 currentWeapon = gameObject.AddComponent<LaserWeapon>();
                 break;
-            */
         }
 
         if (currentWeapon == null)
@@ -95,22 +93,26 @@ public class WeaponManager : MonoBehaviour
         ChangeWeapon(defaultWeaponData);
     }
 
+    // 무기 레벨 및 플레이어 능력치 변경을 감지하기 위한 이벤트 구독
     private void OnEnable()
     {
         runtimeData.OnWeaponLevelChanged += UpdateWeaponLevel;
         playerStats.OnStatsChanged += UpdatePlayerStats;
     }
 
+    // 비활성화 시 이벤트 구독 해제
     private void OnDisable()
     {
         runtimeData.OnWeaponLevelChanged -= UpdateWeaponLevel;
         playerStats.OnStatsChanged -= UpdatePlayerStats;
     }
 
+    // 무기 단계 변경 이벤트 발생시
     private void UpdateWeaponLevel(WeaponType weaponType, int level)
     {
         if(currentWeapon == null) 
             return;
+        // 현재 장착중인 무기와 단계 변경한 무기가 같은지 확인
         if (currentWeaponData.Type != weaponType)
             return;
 
@@ -118,11 +120,16 @@ public class WeaponManager : MonoBehaviour
         RefreshWeaponStats();
     }
 
+    // 무기 수치 변경 이벤트 발생시
     private void UpdatePlayerStats()
     {
         RefreshWeaponStats();
     }
 
+    /// <summary>
+    /// SO의 기본 능력치와 PlayerStats의 추가 능력치를 합산하여
+    /// 현재 무기에 적용할 최종 능력치를 계산 후 새로운 능력치를 전달합니다.
+    /// </summary>
     private void RefreshWeaponStats()
     {
         if (currentWeapon == null || currentWeaponData == null)
@@ -162,10 +169,6 @@ public class WeaponManager : MonoBehaviour
 
         stats.LaserWidth = currentWeaponData.LaserWidth
             + playerStats.CheckStat(StatType.LaserWidth, currentWeaponData.Type);
-
-        currentWeapon.UpdateStats(stats);
-
-        
 
         currentWeapon.UpdateStats(stats);
     }

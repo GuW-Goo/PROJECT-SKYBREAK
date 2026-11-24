@@ -38,6 +38,7 @@ public class WeaponChoiceManager : MonoBehaviour
 
         choices = new List<ChoiceData>();
 
+        // 무기와 능력치 선택지 결합
         for (int i = 0; i < Mathf.Min(weapons.Count, stats.Count); i++)
         {
             choices.Add(new ChoiceData(weapons[i], stats[i]));
@@ -49,7 +50,7 @@ public class WeaponChoiceManager : MonoBehaviour
             return;
         }
 
-        Time.timeScale = 0f;
+        GameManager.Instance.GamePause();
 
         for (int i = 0; i < choices.Count; i++)
         {
@@ -91,12 +92,13 @@ public class WeaponChoiceManager : MonoBehaviour
         // 능력치 적용
         playerStats.ApplyStat(selected.StatData);
 
+        // 능력치가 적용되는 무기Type에 적용
         WeaponType targetWeapon = selected.StatData.TargetWeapons.Length == 0
             ? WeaponType.None
             : selected.WeaponData.Type;
 
         isSelecting = false;
-        Time.timeScale = 1f;
+        GameManager.Instance.GameResume();
     }
 
     /// <summary>
@@ -123,6 +125,11 @@ public class WeaponChoiceManager : MonoBehaviour
         return selected;
     }
 
+    /// <summary>
+    /// 스탯의 모든 종류 중 int count (양수) 만큼 뽑아서 return 합니다.
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
     private List<StatDataSO> GetRandomStatChoices(int count)
     {
         List<StatDataSO> candidates = new List<StatDataSO>(allStatDataSOList);
