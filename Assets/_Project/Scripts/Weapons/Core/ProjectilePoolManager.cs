@@ -10,6 +10,7 @@ public class ProjectilePoolManager : MonoBehaviour
     Dictionary<GameObject, Queue<BaseProjectile>> pools 
         = new Dictionary<GameObject, Queue<BaseProjectile>>();
 
+    // 풀에서 탄막을 대여
     public BaseProjectile GetProjectile(GameObject projectilePrefab)
     {
         if (!pools.TryGetValue(projectilePrefab, out var pool))
@@ -25,6 +26,7 @@ public class ProjectilePoolManager : MonoBehaviour
         return pool.Dequeue();
     }
 
+    // 탄막을 풀에 반환
     public void ReturnProjectile(BaseProjectile projectile)
     {
         if(pools.TryGetValue(projectile.OriginalPrefab, out var pool))
@@ -34,6 +36,7 @@ public class ProjectilePoolManager : MonoBehaviour
         }
     }
 
+    // 풀 생성
     private Queue<BaseProjectile> CreatePool(GameObject projectilePrefab)
     {
         Queue<BaseProjectile> newPool = new Queue<BaseProjectile>();
@@ -47,6 +50,7 @@ public class ProjectilePoolManager : MonoBehaviour
         return newPool;
     }
 
+    // 탄막 생성
     private BaseProjectile CreateProjectile(GameObject projectilePrefab)
     {
         BaseProjectile projectile;

@@ -27,12 +27,14 @@ public class PlayerBomb : MonoBehaviour
 
         currentBomb--;
 
+        // 모든 적 탄막 제거
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("Enemy_Bullet");
         foreach (GameObject bullet in bullets)
         {
             Destroy(bullet);
         }
 
+        // 모든 적 데미지
         GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject target in targets)
         {

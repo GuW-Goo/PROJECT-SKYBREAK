@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: AdditionalProjectile
   m_EditorClassIdentifier: Assembly-CSharp::StatDataSO
   statName: "\uCD94\uAC00 \uD0C4\uB9C9"
-  description: "\uC9C1\uC120\uD615, \uBC29\uC0AC\uD615\uC5D0\uC11C\uB9CC \uC801\uC6A9\uB418\uB294
-    \uCD94\uAC00\uD0C4\uB9C9"
+  description: "\uC9C1\uC120, \uBC29\uC0AC, \uC720\uB3C4\uD615\uC5D0 \uC801\uC6A9\uB418\uB294
+    \uCD94\uAC00 \uD0C4\uB9C9"
   statType: 4
   increaseValue: 1
-  targetWeapons: 0000000001000000
+  targetWeapons: 000000000100000003000000

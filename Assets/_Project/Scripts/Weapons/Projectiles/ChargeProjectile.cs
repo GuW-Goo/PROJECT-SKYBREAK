@@ -7,7 +7,13 @@ public class ChargeProjectile : BaseProjectile
     private bool canSplash;
     private bool hasImpacted;
 
-    public void Initialize(int damage, float moveSpeed, float lifeTime, float splashRadius, bool canSplash, GameObject explosionEffect)
+    public void Initialize(
+        int damage,
+        float moveSpeed,
+        float lifeTime,
+        float splashRadius,
+        bool canSplash,
+        GameObject explosionEffect)
     {
         base.Initialize(
         damage,

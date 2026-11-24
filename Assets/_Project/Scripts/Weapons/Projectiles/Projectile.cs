@@ -6,9 +6,9 @@ public class Projectile : BaseProjectile
     {
         if (other.TryGetComponent<IDamageable>(out var target))
         {
-            Instantiate(explosionEffect, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            Instantiate(explosionEffect, this.transform.position, Quaternion.identity);
             target.TakeDamage(damage);
-            Destroy(gameObject);
+            poolManager.ReturnProjectile(this);
         }
     }
 }

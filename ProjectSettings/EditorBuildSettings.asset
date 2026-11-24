@@ -5,9 +5,21 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Project/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/_Project/Scenes/MainMenu.unity
+    guid: 49277aa973cd6cd4c992234c92ce6336
+  - enabled: 1
+    path: Assets/_Project/Scenes/Playing.unity
+    guid: 9e50036ac784fee4db44345004824b94
+  - enabled: 1
+    path: Assets/_Project/Scenes/GameOver.unity
+    guid: a310b71582fe5624cae3bac0636f2295
+  - enabled: 1
+    path: Assets/_Project/Scenes/Ranking.unity
+    guid: 438f31835e52ab942abf809514871acc
   m_configObjects:
     com.unity.adaptivePerformance.basic.provider_settings: {fileID: 11400000, guid: e630709bfeb536f43b31f6129c283eab, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: dba3f3f231662ee48a5d60fd96f2842a, type: 2}
