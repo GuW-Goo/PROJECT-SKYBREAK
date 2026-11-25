@@ -564,6 +564,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   playerData: {fileID: 11400000, guid: 140217f6baa4d5143a9df29463b0f1d4, type: 2}
+  modelRoot: {fileID: 745425850633098903}
+  invincibilityDuration: 1
+  blickInterval: 0.1
 --- !u!114 &8687888613427279637
 MonoBehaviour:
   m_ObjectHideFlags: 0
