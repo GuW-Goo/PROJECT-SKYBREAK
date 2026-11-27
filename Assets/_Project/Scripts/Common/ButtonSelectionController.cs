@@ -12,7 +12,10 @@ public class ButtonSelectionController : MonoBehaviour
 
     private void Update()
     {
-        if(Keyboard.current != null)
+        // GameManager가 없거나, GameManager가 있어도 Playing중이 아닐때만 입력을 받습니다.
+        if(Keyboard.current != null && 
+            (GameManager.Instance == null ||
+            GameManager.Instance.CurrentState != GameState.Playing))
         {
             if(Keyboard.current.downArrowKey.wasPressedThisFrame)
             {
@@ -49,6 +52,16 @@ public class ButtonSelectionController : MonoBehaviour
     public void SelectButton(int index)
     {
         selectedIndex = index;
+    }
+
+    public void ResetSelection()
+    {
+        selectedIndex = -1;
+
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].localScale = Vector3.one;
+        }
     }
 
     private void ClickSelectedButton()

@@ -9,6 +9,9 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.Playing)
+            return;
+
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             weaponManager.OnFirePressed();

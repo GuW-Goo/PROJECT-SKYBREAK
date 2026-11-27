@@ -19,6 +19,9 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.Playing)
+            return;
+
         float x = 0.0f;
         float z = 0.0f;
 

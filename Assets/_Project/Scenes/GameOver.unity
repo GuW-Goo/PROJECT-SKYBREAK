@@ -626,6 +626,7 @@ GameObject:
   - component: {fileID: 1229412174}
   - component: {fileID: 1229412173}
   - component: {fileID: 1229412177}
+  - component: {fileID: 1229412178}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -731,6 +732,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41125282c136e2f4db7b9b6ff7aebbae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneButtonHandler
+--- !u!114 &1229412178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229412172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad518f53ddab0f44a7c134fcd24c76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSelectionController
+  buttons:
+  - {fileID: 1613431825}
+  - {fileID: 1268733875}
+  highlightScale: 1.1
+  transitionSpeed: 10
 --- !u!1 &1268733874
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,7 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6239d8bc5075043b3971abe3e49625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonPointer
-  controller: {fileID: 1389707431}
+  controller: {fileID: 0}
   buttonIndex: 1
 --- !u!1 &1319737678
 GameObject:
@@ -966,55 +984,6 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1389707430
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1389707432}
-  - component: {fileID: 1389707431}
-  m_Layer: 0
-  m_Name: ButtonSelectionController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1389707431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389707430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad518f53ddab0f44a7c134fcd24c76d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonSelectionController
-  buttons:
-  - {fileID: 1613431825}
-  - {fileID: 1268733875}
-  highlightScale: 1.1
-  transitionSpeed: 10
---- !u!4 &1389707432
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389707430}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1241,7 +1210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6239d8bc5075043b3971abe3e49625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonPointer
-  controller: {fileID: 1389707431}
+  controller: {fileID: 0}
   buttonIndex: 0
 --- !u!1 &1841322230
 GameObject:
@@ -1389,4 +1358,3 @@ SceneRoots:
   - {fileID: 288492362}
   - {fileID: 1229412176}
   - {fileID: 625879383}
-  - {fileID: 1389707432}

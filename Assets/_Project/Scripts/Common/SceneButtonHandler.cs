@@ -16,4 +16,9 @@ public class SceneButtonHandler : MonoBehaviour
     {
         GameSceneManager.Instance.LoadScene(SceneName.Ranking);
     }
+
+    public void ResumeGame()
+    {
+        GameManager.Instance.GameResume();
+    }
 }

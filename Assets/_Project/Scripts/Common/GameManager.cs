@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private GameObject pauseCanvas;
     
     public GameState CurrentState { get; private set; }
     public float ElapsedTime { get; private set; }
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        GameStart();
     }
 
     private void Start()
@@ -35,6 +38,20 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (CurrentState == GameState.Playing)
+            {
+                GamePause();
+                pauseCanvas.SetActive(true);
+            }
+            else if (CurrentState == GameState.Paused)
+            {
+                pauseCanvas.SetActive(false);
+                GameResume();
+            }
+        }
+
         if (CurrentState != GameState.Playing)
             return;
 
@@ -50,6 +67,7 @@ public class GameManager : MonoBehaviour
     {
         CurrentState = GameState.Playing;
         ElapsedTime = 0f;
+        Time.timeScale = 1f;
     }
 
     public void GamePause()
@@ -60,6 +78,8 @@ public class GameManager : MonoBehaviour
 
     public void GameResume()
     {
+        pauseCanvas.GetComponentInChildren<ButtonSelectionController>().ResetSelection();
+        pauseCanvas.SetActive(false);
         CurrentState = GameState.Playing;
         Time.timeScale = 1f;
     }
