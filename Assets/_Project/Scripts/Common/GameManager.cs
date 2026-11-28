@@ -84,6 +84,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    public void ChoosingWeapon()
+    {
+        CurrentState = GameState.Choosing;
+        Time.timeScale = 0f;
+    }
+
     private void GameOver()
     { 
         CurrentState = GameState.GameOver;

@@ -88,6 +88,12 @@ public class WeaponManager : MonoBehaviour
         runtimeData.LevelUP(weaponType);
     }
 
+    // WeaponType¿¡ µû¸¥ level return
+    public int GetWeaponLevel(WeaponType weaponType)
+    {
+        return runtimeData.GetWeaponLevel(weaponType);
+    }
+
     private void Start()
     {
         ChangeWeapon(defaultWeaponData);

@@ -12,23 +12,21 @@ public class ButtonSelectionController : MonoBehaviour
 
     private void Update()
     {
-        // GameManager가 없거나, GameManager가 있어도 Playing중이 아닐때만 입력을 받습니다.
-        if(Keyboard.current != null && 
-            (GameManager.Instance == null ||
-            GameManager.Instance.CurrentState != GameState.Playing))
+        if(Keyboard.current == null) return;
+
+        if (Keyboard.current.downArrowKey.wasPressedThisFrame ||
+                Keyboard.current.leftAltKey.wasPressedThisFrame)
         {
-            if(Keyboard.current.downArrowKey.wasPressedThisFrame)
-            {
-                MoveSelection(1);
-            }
-            else if(Keyboard.current.upArrowKey.wasPressedThisFrame)
-            {
-                MoveSelection(-1);
-            }
-            else if(Keyboard.current.enterKey.wasPressedThisFrame)
-            {
-                ClickSelectedButton();
-            }
+            MoveSelection(1);
+        }
+        else if (Keyboard.current.upArrowKey.wasPressedThisFrame ||
+            Keyboard.current.rightArrowKey.wasPressedThisFrame)
+        {
+            MoveSelection(-1);
+        }
+        else if (Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            ClickSelectedButton();
         }
 
         UpdateButtonScale();

@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,9 +15,24 @@ public class WeaponChoiceManager : MonoBehaviour
     [SerializeField] List<WeaponDataSO> allWeaponDataSOList;
     [SerializeField] List<StatDataSO> allStatDataSOList;
 
+    [Header("Choice UI")]
+    [SerializeField] private GameObject UIcanvas;
+    [SerializeField] private ChoiceUI[] choiceUIs;
+
     private List<ChoiceData> choices;
 
     private bool isSelecting = false;
+
+    private void Awake()
+    {
+        for(int i = 0; i < choiceUIs.Length; i++)
+        {
+            choiceUIs[i].Initialize(i);
+            choiceUIs[i].OnChoiceSelected += SelectChoice;
+        }
+
+        UIcanvas.SetActive(false);
+    }
 
     private void OnEnable()
     {
@@ -29,6 +42,14 @@ public class WeaponChoiceManager : MonoBehaviour
     private void OnDisable()
     {
         playerCollision.OnWeaponItemCollected -= HandleWeaponItemCollected;
+    }
+
+    private void OnDestroy()
+    {
+        foreach(ChoiceUI choiceUI in choiceUIs)
+        {
+            choiceUI.OnChoiceSelected -= SelectChoice;
+        }
     }
 
     private void HandleWeaponItemCollected()
@@ -50,15 +71,11 @@ public class WeaponChoiceManager : MonoBehaviour
             return;
         }
 
-        GameManager.Instance.GamePause();
+        UpdateChoiceUI();
 
-        for (int i = 0; i < choices.Count; i++)
-        {
-            Debug.Log(
-                $"{i + 1}번 선택지: {choices[i].WeaponData.WeaponName} + {choices[i].StatData.StatName}"
-            );
-        }
+        UIcanvas.SetActive(true);
 
+        GameManager.Instance.ChoosingWeapon();
         isSelecting = true;
     }
 
@@ -74,6 +91,8 @@ public class WeaponChoiceManager : MonoBehaviour
 
     private void SelectChoice(int index)
     {
+        if (!isSelecting) return;
+
         if (index < 0 || index >= choices.Count)
             return;
 
@@ -92,13 +111,38 @@ public class WeaponChoiceManager : MonoBehaviour
         // 능력치 적용
         playerStats.ApplyStat(selected.StatData);
 
-        // 능력치가 적용되는 무기Type에 적용
-        WeaponType targetWeapon = selected.StatData.TargetWeapons.Length == 0
-            ? WeaponType.None
-            : selected.WeaponData.Type;
+        UIcanvas.SetActive(false);
 
         isSelecting = false;
         GameManager.Instance.GameResume();
+    }
+
+    private void UpdateChoiceUI()
+    {
+        for(int i = 0; i < choices.Count; i++)
+        {
+            ChoiceData choice = choices[i];
+
+            int currentLevel = weaponManager.GetWeaponLevel(choice.WeaponData.Type);
+
+            string levelText;
+
+            if (weaponManager.CurrentWeaponType == choice.WeaponData.Type)
+            {
+                levelText = $"lv.{currentLevel} → lv.{currentLevel + 1}";
+            }
+            else
+            {
+                levelText = $"lv.{currentLevel}";
+            }
+
+            choiceUIs[i].SetChoiceUI(
+                choice.WeaponData.WeaponName,
+                levelText,
+                choice.StatData.StatName,
+                $"+{choice.StatData.IncreaseValue:0.##}"
+            );
+        }
     }
 
     /// <summary>
